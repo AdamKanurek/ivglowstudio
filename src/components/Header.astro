@@ -1,0 +1,232 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import { site, nav } from '../data/site';
+import InstagramIcon from './InstagramIcon.astro';
+import BookingButton from './BookingButton.astro';
+---
+
+<header class="header" data-header>
+  <div class="container header__inner">
+    <a href="#top" class="header__logo" aria-label={`${site.name} – úvod`}>
+      <Image src={logo} alt={site.name} width={180} densities={[1, 2]} loading="eager" />
+    </a>
+
+    <a href={site.instagramUrl} class="header__ig" target="_blank" rel="noopener">
+      <InstagramIcon size={18} />
+      <span>{site.instagram}</span>
+    </a>
+
+    <div class="header__menu">
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="main-nav"
+        data-menu-toggle
+      >
+        <span class="menu-toggle__label">Nabídka</span>
+        <span class="menu-toggle__icon" aria-hidden="true"><span></span></span>
+      </button>
+
+      <nav id="main-nav" class="menu" aria-label="Hlavní navigace" data-menu hidden>
+        <ul>
+          {
+            nav.map((item) => (
+              <li>
+                <a href={item.href} data-menu-link>
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <BookingButton class="menu__cta" />
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 50;
+    height: var(--header-h);
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+
+  .header.is-scrolled,
+  .header.is-open {
+    background: rgba(253, 251, 248, 0.94);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 1px 0 var(--line);
+  }
+
+  .header__inner {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .header__logo img {
+    width: clamp(130px, 18vw, 170px);
+  }
+
+  .header__ig {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    color: var(--gold-900);
+  }
+
+  .header__ig:hover {
+    color: var(--gold-500);
+  }
+
+  .header__menu {
+    position: relative;
+    justify-self: end;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    padding: 0 4px;
+    border: 0;
+    background: none;
+    color: var(--gold-900);
+    font: 500 0.8125rem/1 var(--font-sans);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .menu-toggle__icon {
+    position: relative;
+    width: 22px;
+    height: 12px;
+  }
+
+  .menu-toggle__icon::before,
+  .menu-toggle__icon::after,
+  .menu-toggle__icon span {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .menu-toggle__icon::before { top: 0; }
+  .menu-toggle__icon span { top: 50%; }
+  .menu-toggle__icon::after { bottom: 0; }
+
+  [aria-expanded='true'] .menu-toggle__icon::before { transform: translateY(5.5px) rotate(45deg); }
+  [aria-expanded='true'] .menu-toggle__icon span { opacity: 0; }
+  [aria-expanded='true'] .menu-toggle__icon::after { transform: translateY(-5.5px) rotate(-45deg); }
+
+  .menu {
+    position: absolute;
+    top: calc(100% + 18px);
+    right: 0;
+    min-width: 260px;
+    padding: 28px 32px 32px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: 0 24px 48px -24px rgba(58, 48, 41, 0.35);
+  }
+
+  .menu ul {
+    list-style: none;
+    margin: 0 0 24px;
+    padding: 0;
+  }
+
+  .menu li + li {
+    border-top: 1px solid var(--line);
+  }
+
+  .menu a[data-menu-link] {
+    display: block;
+    padding: 12px 0;
+    font-family: var(--font-serif);
+    font-size: 1.375rem;
+    color: var(--gold-900);
+    text-decoration: none;
+  }
+
+  .menu a[data-menu-link]:hover {
+    color: var(--gold-500);
+  }
+
+  .menu :global(.menu__cta) {
+    width: 100%;
+  }
+
+  @media (max-width: 640px) {
+    .header__inner {
+      grid-template-columns: 1fr auto auto;
+    }
+
+    .header__ig {
+      min-width: 44px;
+      min-height: 44px;
+      justify-content: center;
+    }
+
+    .header__ig span,
+    .menu-toggle__label {
+      display: none;
+    }
+
+    .menu {
+      position: fixed;
+      top: var(--header-h);
+      left: 0;
+      right: 0;
+      min-width: 0;
+      border-inline: 0;
+      padding-inline: var(--gutter);
+    }
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]')!;
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]')!;
+  const menu = document.querySelector<HTMLElement>('[data-menu]')!;
+
+  const setOpen = (open: boolean) => {
+    toggle.setAttribute('aria-expanded', String(open));
+    menu.hidden = !open;
+    header.classList.toggle('is-open', open);
+  };
+
+  toggle.addEventListener('click', () => setOpen(menu.hidden));
+  menu.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a')) setOpen(false);
+  });
+  document.addEventListener('click', (e) => {
+    if (!menu.hidden && !header.contains(e.target as Node)) setOpen(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu.hidden) {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+
+  const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 20);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>

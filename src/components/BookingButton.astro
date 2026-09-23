@@ -1,0 +1,24 @@
+---
+/**
+ * Jediné místo pro CTA „Objednat se“.
+ * Dnes vede na telefon; po zavedení rezervačního systému stačí změnit `booking.href`
+ * v src/data/site.ts (případně sem vložit widget/modal).
+ */
+import { booking } from '../data/site';
+
+interface Props {
+  variant?: 'primary' | 'ghost';
+  class?: string;
+}
+
+const { variant = 'primary', class: className } = Astro.props;
+const external = booking.href.startsWith('http');
+---
+
+<a
+  href={booking.href}
+  class:list={['btn', `btn--${variant}`, className]}
+  {...external ? { target: '_blank', rel: 'noopener' } : {}}
+>
+  {booking.label}
+</a>

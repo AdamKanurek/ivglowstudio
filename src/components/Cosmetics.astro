@@ -1,0 +1,93 @@
+---
+import { Image } from 'astro:assets';
+import img81 from '../assets/img/IVglow81.jpg';
+import img59 from '../assets/img/IVglow59.jpg';
+import img33 from '../assets/img/IVglow33.jpg';
+import img22 from '../assets/img/IVglow22.jpg';
+
+const photos = [
+  { src: img33, alt: 'Profesionální kosmetika Gigi Laboratories v rukou kosmetičky' },
+  { src: img81, alt: 'Kosmetický stolek s produkty Gigi' },
+  { src: img59, alt: 'Přístroj pro ošetření pleti a séra Gigi' },
+  { src: img22, alt: 'Nanášení krému při ošetření pleti' },
+];
+---
+
+<section class="section cosmetics" id="kosmetika">
+  <div class="container cosmetics__grid">
+    <div class="cosmetics__text reveal">
+      <span class="eyebrow">kosmetika</span>
+      <h2 class="section-title">Gigi Laboratories</h2>
+      <span class="divider cosmetics__divider"></span>
+      <p>
+        Do svého salonu jsem si vybrala profesionální kosmetiku <strong>Gigi Laboratories</strong>,
+        která propojuje účinné aktivní látky, moderní technologie a individuální přístup ke
+        skincare.
+      </p>
+      <p>
+        Produkty vybírám vždy podle aktuálního stavu pokožky a cíle ošetření – ať už řešíme
+        hydrataci, regeneraci, citlivost, první známky stárnutí nebo sjednocení vzhledu pleti.
+      </p>
+    </div>
+
+    <div class="cosmetics__photos">
+      {
+        photos.map((p) => (
+          <Image
+            src={p.src}
+            alt={p.alt}
+            widths={[320, 520, 800]}
+            sizes="(max-width: 900px) 50vw, 25vw"
+            class="cosmetics__img reveal"
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .cosmetics__grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: clamp(40px, 6vw, 88px);
+    align-items: center;
+  }
+
+  .cosmetics__divider {
+    margin: 20px 0 28px;
+  }
+
+  .cosmetics strong {
+    font-weight: 500;
+    color: var(--gold-900);
+  }
+
+  .cosmetics__photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(12px, 1.6vw, 20px);
+  }
+
+  .cosmetics :global(.cosmetics__img) {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+  }
+
+  /* jemné „schodovité“ posunutí fotek */
+  .cosmetics :global(.cosmetics__img:nth-child(even)) {
+    position: relative;
+    top: 40px;
+  }
+
+  @media (max-width: 900px) {
+    .cosmetics__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cosmetics__photos {
+      padding-bottom: 40px;
+    }
+  }
+</style>

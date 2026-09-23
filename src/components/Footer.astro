@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import { site } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <Image src={logo} alt={site.name} width={150} densities={[1, 2]} class="footer__logo" />
+    <p>
+      {site.address.street}, {site.address.zip} {site.address.city} ·
+      <a href={site.phoneHref}>{site.phone}</a> ·
+      <a href={site.instagramUrl} target="_blank" rel="noopener">{site.instagram}</a>
+    </p>
+    <p class="footer__copy">© {year} {site.name}</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding-block: 56px 40px;
+    background: var(--bg-alt);
+    border-top: 1px solid var(--line);
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .footer__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer :global(.footer__logo) {
+    width: 150px;
+    margin-bottom: 12px;
+  }
+
+  .footer a {
+    text-decoration: none;
+    color: var(--gold-900);
+  }
+
+  .footer a:hover {
+    color: var(--gold-500);
+  }
+
+  .footer p {
+    margin: 0;
+  }
+
+  .footer__copy {
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+  }
+</style>

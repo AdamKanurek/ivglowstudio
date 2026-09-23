@@ -1,0 +1,85 @@
+---
+import { Image } from 'astro:assets';
+import portrait from '../assets/img/IVglow36.jpg';
+---
+
+<section class="section section--alt about" id="o-mne">
+  <div class="container about__grid">
+    <div class="about__photo reveal">
+      <Image
+        src={portrait}
+        alt="Kosmetička IV Glow studia při ošetření pleti"
+        widths={[400, 640, 960]}
+        sizes="(max-width: 900px) 100vw, 45vw"
+      />
+    </div>
+
+    <div class="about__text reveal">
+      <span class="eyebrow">o mně</span>
+      <h2 class="section-title">Kosmetika je pro mě radost</h2>
+      <span class="divider about__divider"></span>
+      <p class="about__lead">
+        Kosmetika pro mě není jen práce, ale především radost a možnost dopřát každé ženě chvíli
+        jen pro sebe.
+      </p>
+      <p>
+        Ve svém salonu se snažím vytvářet příjemné a klidné prostředí, kde si odpočinete, načerpáte
+        novou energii a zároveň se budete cítit krásně a sebevědomě.
+      </p>
+      <p>
+        Ke každé klientce přistupuji individuálně, protože věřím, že každá pleť i každá žena má své
+        vlastní potřeby.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__grid {
+    display: grid;
+    grid-template-columns: 5fr 6fr;
+    gap: clamp(40px, 6vw, 96px);
+    align-items: center;
+  }
+
+  .about__photo {
+    position: relative;
+  }
+
+  .about__photo::before {
+    content: '';
+    position: absolute;
+    inset: 24px -24px -24px 24px;
+    border: 1px solid var(--gold-300);
+  }
+
+  .about__photo :global(img) {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 60% 30%;
+  }
+
+  .about__divider {
+    margin: 20px 0 28px;
+  }
+
+  .about__lead {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.5rem;
+    line-height: 1.45;
+    color: var(--gold-900);
+  }
+
+  @media (max-width: 900px) {
+    .about__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about__photo {
+      margin-right: 24px;
+    }
+  }
+</style>

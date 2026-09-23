@@ -1,0 +1,253 @@
+---
+import { Image, getImage } from 'astro:assets';
+import img8 from '../assets/img/IVglow8.jpg';
+import img12 from '../assets/img/IVglow12.jpg';
+import img44 from '../assets/img/IVglow44.jpg';
+import img57 from '../assets/img/IVglow57.jpg';
+import img2 from '../assets/img/IVglow2.jpg';
+import { reviews } from '../data/reviews';
+
+const photos = await Promise.all(
+  [
+    { src: img8, alt: 'Přístrojové ošetření pleti' },
+    { src: img12, alt: 'Ošetření pleti přístrojovou hlavicí' },
+    { src: img44, alt: 'Čištění pleti' },
+    { src: img57, alt: 'Nanášení masky při ošetření' },
+    { src: img2, alt: 'Masáž obličeje v salonu IV Glow studio' },
+  ].map(async (p) => ({
+    ...p,
+    large: await getImage({ src: p.src, width: 1600, format: 'webp' }),
+  }))
+);
+---
+
+<section class="section section--alt gallery" id="galerie">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">fotogalerie</span>
+      <h2 class="section-title">Z mého salonu</h2>
+      <span class="divider"></span>
+    </div>
+
+    <ul class="gallery__grid">
+      {
+        photos.map((p, i) => (
+          <li class="reveal">
+            <a href={p.large.src} class="gallery__item" data-lightbox={i}>
+              <Image
+                src={p.src}
+                alt={p.alt}
+                widths={[320, 480, 720]}
+                sizes="(max-width: 640px) 50vw, (max-width: 1000px) 33vw, 20vw"
+              />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    {
+      reviews.length > 0 && (
+        <div class="reviews">
+          <h3 class="reviews__title reveal">Co říkají klientky</h3>
+          <ul class="reviews__list">
+            {reviews.map((r) => (
+              <li class="review reveal">
+                <blockquote>
+                  <p>„{r.text}“</p>
+                  <footer>
+                    — {r.author}
+                    {r.source && <span class="review__source">{r.source}</span>}
+                  </footer>
+                </blockquote>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+  </div>
+
+  <dialog class="lightbox" data-lightbox-dialog aria-label="Náhled fotografie">
+    <button class="lightbox__btn lightbox__close" data-lb-close aria-label="Zavřít">×</button>
+    <button class="lightbox__btn lightbox__prev" data-lb-prev aria-label="Předchozí">‹</button>
+    <img class="lightbox__img" alt="" data-lb-img />
+    <button class="lightbox__btn lightbox__next" data-lb-next aria-label="Další">›</button>
+  </dialog>
+</section>
+
+<style>
+  .gallery__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: clamp(10px, 1.4vw, 18px);
+  }
+
+  .gallery__item {
+    display: block;
+    overflow: hidden;
+    cursor: zoom-in;
+  }
+
+  .gallery__item :global(img) {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+
+  .gallery__item:hover :global(img) {
+    transform: scale(1.04);
+  }
+
+  @media (max-width: 1000px) {
+    .gallery__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .gallery__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery__grid li:first-child {
+      grid-column: span 2;
+    }
+
+    .gallery__grid li:first-child :global(img) {
+      aspect-ratio: 4 / 5;
+    }
+  }
+
+  .reviews {
+    margin-top: clamp(56px, 8vw, 96px);
+  }
+
+  .reviews__title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 32px;
+  }
+
+  .reviews__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .review blockquote {
+    margin: 0;
+    height: 100%;
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+  }
+
+  .review p {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+
+  .review footer {
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+    color: var(--gold-700);
+  }
+
+  .review__source {
+    margin-left: 8px;
+    color: var(--text-muted);
+  }
+
+  .lightbox {
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: rgba(28, 22, 18, 0.94);
+  }
+
+  .lightbox[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox::backdrop {
+    background: transparent;
+  }
+
+  .lightbox__img {
+    max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 96px);
+    object-fit: contain;
+  }
+
+  .lightbox__btn {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border: 0;
+    background: none;
+    color: #fff;
+    font: 300 2.4rem/1 var(--font-sans);
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  .lightbox__btn:hover {
+    opacity: 1;
+  }
+
+  .lightbox__close { top: 12px; right: 12px; }
+  .lightbox__prev { left: 8px; top: 50%; transform: translateY(-50%); }
+  .lightbox__next { right: 8px; top: 50%; transform: translateY(-50%); }
+</style>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('[data-lightbox-dialog]');
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-lightbox]')];
+
+  if (dialog && typeof dialog.showModal === 'function') {
+    const img = dialog.querySelector<HTMLImageElement>('[data-lb-img]')!;
+    let current = 0;
+
+    const show = (i: number) => {
+      current = (i + links.length) % links.length;
+      const link = links[current];
+      img.src = link.href;
+      img.alt = link.querySelector('img')?.alt ?? '';
+    };
+
+    links.forEach((link, i) =>
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        show(i);
+        dialog.showModal();
+      })
+    );
+
+    dialog.querySelector('[data-lb-close]')!.addEventListener('click', () => dialog.close());
+    dialog.querySelector('[data-lb-prev]')!.addEventListener('click', () => show(current - 1));
+    dialog.querySelector('[data-lb-next]')!.addEventListener('click', () => show(current + 1));
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
+    });
+  }
+</script>

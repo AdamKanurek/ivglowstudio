@@ -1,0 +1,116 @@
+---
+import { site } from '../data/site';
+import InstagramIcon from './InstagramIcon.astro';
+import BookingButton from './BookingButton.astro';
+---
+
+<section class="section contact" id="kontakt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">kontakt</span>
+      <h2 class="section-title">Těším se na vás</h2>
+      <span class="divider"></span>
+    </div>
+
+    <div class="contact__grid">
+      <div class="contact__card reveal">
+        <h3>Telefon</h3>
+        <a href={site.phoneHref} class="contact__value">{site.phone}</a>
+        <p>Objednávky telefonicky nebo SMS</p>
+      </div>
+
+      <div class="contact__card reveal">
+        <h3>Instagram</h3>
+        <a href={site.instagramUrl} class="contact__value contact__ig" target="_blank" rel="noopener">
+          <InstagramIcon size={22} />
+          {site.instagram}
+        </a>
+        <p>Sledujte novinky ze salonu</p>
+      </div>
+
+      <div class="contact__card reveal">
+        <h3>Adresa</h3>
+        <address class="contact__value">
+          {site.address.street}<br />
+          {site.address.zip} {site.address.city}
+        </address>
+        <a href={site.mapUrl} class="contact__link" target="_blank" rel="noopener">
+          Zobrazit na mapě →
+        </a>
+      </div>
+    </div>
+
+    <div class="contact__cta reveal">
+      <BookingButton />
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .contact__card {
+    padding: 40px 28px;
+    text-align: center;
+    background: var(--surface);
+    border: 1px solid var(--line);
+  }
+
+  .contact__card h3 {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold-700);
+    margin-bottom: 16px;
+  }
+
+  .contact__value {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-style: normal;
+    line-height: 1.3;
+    color: var(--gold-900);
+    text-decoration: none;
+    margin-bottom: 12px;
+  }
+
+  address.contact__value {
+    display: block;
+  }
+
+  a.contact__value:hover {
+    color: var(--gold-500);
+  }
+
+  .contact__card p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+
+  .contact__link {
+    font-size: 0.95rem;
+    color: var(--gold-700);
+    text-underline-offset: 4px;
+  }
+
+  .contact__cta {
+    margin-top: 48px;
+    text-align: center;
+  }
+
+  @media (max-width: 860px) {
+    .contact__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

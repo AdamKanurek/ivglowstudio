@@ -1,0 +1,337 @@
+---
+import { Picture } from 'astro:assets';
+import img85 from '../assets/img/IVglow85.jpg';
+import img67 from '../assets/img/IVglow67.jpg';
+import img78 from '../assets/img/IVglow78.jpg';
+import BookingButton from './BookingButton.astro';
+
+// Foto salonu – střídají se v hero (crossfade)
+// pos = výřez na desktopu, posMobile = výřez na úzkém displeji (zaostřeno na lehátko a vybavení)
+const slides = [
+  { src: img85, alt: 'Světlý a klidný interiér kosmetického salonu IV Glow studio', pos: '60% 50%', posMobile: '62% 50%' },
+  { src: img67, alt: 'Kosmetické lehátko a přístroje u okna', pos: '55% 50%', posMobile: '50% 50%' },
+  { src: img78, alt: 'Ošetřovna salonu s kosmetickým lehátkem', pos: '40% 50%', posMobile: '48% 50%' },
+];
+
+const INTERVAL = 6000;
+---
+
+<section class="hero" id="top" data-hero-carousel data-interval={INTERVAL} style={`--interval: ${INTERVAL}ms`}>
+  <div class="hero__slides">
+    {
+      slides.map((s, i) => (
+        <div class:list={['hero__slide', { 'is-active': i === 0 }]} aria-hidden={i === 0 ? undefined : 'true'}>
+          <Picture
+            src={s.src}
+            alt={s.alt}
+            formats={['avif', 'webp']}
+            width={2560}
+            widths={[768, 1280, 1920, 2560]}
+            sizes="100vw"
+            loading={i === 0 ? 'eager' : 'lazy'}
+            fetchpriority={i === 0 ? 'high' : 'low'}
+            style={`--pos: ${s.pos}; --pos-mobile: ${s.posMobile}`}
+          />
+        </div>
+      ))
+    }
+  </div>
+  <div class="hero__overlay"></div>
+
+  <div class="container hero__content">
+    <span class="eyebrow">chvíle jen pro vás</span>
+    <h1 class="hero__title">Kosmetický salon<br />v&nbsp;Písku</h1>
+    <p class="hero__lead">
+      Profesionální péče o pleť s kosmetikou Gigi Laboratories, individuálně přizpůsobená
+      typu a stavu vaší pleti.
+    </p>
+    <div class="hero__actions">
+      <BookingButton />
+      <a href="#cenik" class="btn btn--ghost">Ceník služeb</a>
+    </div>
+  </div>
+
+  <div class="container hero__dots-wrap">
+    <div class="hero__dots" role="group" aria-label="Fotografie salonu">
+      {
+        slides.map((_, i) => (
+          <button
+            type="button"
+            class:list={['hero__dot', { 'is-active': i === 0 }]}
+            aria-label={`Fotografie ${i + 1} z ${slides.length}`}
+            aria-current={i === 0 ? 'true' : undefined}
+            data-slide-to={i}
+          >
+            <span />
+          </button>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding-block: calc(var(--header-h) + 40px) 120px;
+    overflow: hidden;
+  }
+
+  .hero__slides {
+    position: absolute;
+    inset: 0;
+    /* ořízne přiblížení (scale), aby fotka nepřetékala mimo svůj blok – na mobilu nekončí s hero */
+    overflow: hidden;
+    /* jemné ztmavení a teplý tón laděný k barvám loga */
+    filter: brightness(0.75) contrast(1.05) saturate(0.9) sepia(0.12);
+  }
+
+  .hero__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.6s ease;
+  }
+
+  .hero__slide.is-active {
+    opacity: 1;
+  }
+
+  .hero__slide :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--pos, 50% 50%);
+  }
+
+  /* pomalé přiblížení aktivní fotky; odcházející fotka si ho drží až do konce prolnutí */
+  .hero__slide.is-active :global(img),
+  .hero__slide.is-leaving :global(img) {
+    /* lineárně, aby se fotka hýbala plynule i během prolínání */
+    animation: hero-zoom calc(var(--interval) + 1600ms) linear both;
+  }
+
+  @keyframes hero-zoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.07); }
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(253, 251, 248, 0.96) 0%,
+      rgba(253, 251, 248, 0.84) 38%,
+      rgba(253, 251, 248, 0.15) 75%,
+      rgba(253, 251, 248, 0) 100%
+    );
+  }
+
+  .hero__content {
+    position: relative;
+  }
+
+  .hero__title {
+    font-size: clamp(2.6rem, 5vw, 4.4rem);
+    margin-bottom: 24px;
+  }
+
+  .hero__lead {
+    max-width: 30rem;
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    margin-bottom: 36px;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  /* --- indikátory --- */
+  .hero__dots-wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 48px;
+  }
+
+  .hero__dots {
+    display: flex;
+    gap: 10px;
+  }
+
+  .hero__dot {
+    width: 44px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero__dot span {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: rgba(138, 106, 69, 0.28);
+    overflow: hidden;
+  }
+
+  .hero__dot span::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold-700);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .hero__dot.is-active span::after {
+    animation: dot-progress var(--interval) linear both;
+  }
+
+  .hero__dot:hover span {
+    background: rgba(138, 106, 69, 0.5);
+  }
+
+  @keyframes dot-progress {
+    to { transform: scaleX(1); }
+  }
+
+  /* bez animací: aktivní linka je rovnou plná */
+  @media (prefers-reduced-motion: reduce) {
+    .hero__dot.is-active span::after {
+      transform: scaleX(1);
+    }
+  }
+
+  /* Mobil: fotka nahoře jako samostatný blok, text pod ní – nic fotku nepřekrývá */
+  @media (max-width: 720px) {
+    .hero {
+      --photo-h: min(62svh, 560px);
+      display: block;
+      min-height: 0;
+      padding: 0 0 56px;
+    }
+
+    .hero__slides,
+    .hero__overlay {
+      bottom: auto;
+      height: var(--photo-h);
+    }
+
+    .hero__slide :global(img) {
+      object-position: var(--pos-mobile, 50% 50%);
+    }
+
+    /* nahoře světlý závoj pro čitelnost loga, dole plynulý přechod do pozadí */
+    .hero__overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(253, 251, 248, 0.75) 0%,
+        rgba(253, 251, 248, 0) 22%,
+        rgba(253, 251, 248, 0) 72%,
+        rgba(253, 251, 248, 1) 100%
+      );
+    }
+
+    .hero__content {
+      padding-top: calc(var(--photo-h) + 8px);
+    }
+
+    .hero__dots-wrap {
+      top: calc(var(--photo-h) - 40px);
+      bottom: auto;
+    }
+  }
+</style>
+
+<script>
+  const hero = document.querySelector<HTMLElement>('[data-hero-carousel]');
+
+  if (hero) {
+    const slides = [...hero.querySelectorAll<HTMLElement>('.hero__slide')];
+    const dots = [...hero.querySelectorAll<HTMLButtonElement>('[data-slide-to]')];
+    const interval = Number(hero.dataset.interval) || 6000;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let current = 0;
+    let timer: number | undefined;
+
+    const FADE = 1600; // musí odpovídat transition: opacity v CSS
+    const leaveTimers = new Map<HTMLElement, number>();
+
+    const show = (i: number) => {
+      const next = (i + slides.length) % slides.length;
+      if (next === current) return;
+
+      // odcházející fotka dál běží v přiblížení, dokud úplně nezmizí
+      const leaving = slides[current];
+      leaving.classList.add('is-leaving');
+      window.clearTimeout(leaveTimers.get(leaving));
+      leaveTimers.set(
+        leaving,
+        window.setTimeout(() => leaving.classList.remove('is-leaving'), FADE)
+      );
+
+      current = next;
+      slides[current].classList.remove('is-leaving');
+      slides.forEach((s, n) => {
+        const active = n === current;
+        s.classList.toggle('is-active', active);
+        if (active) s.removeAttribute('aria-hidden');
+        else s.setAttribute('aria-hidden', 'true');
+      });
+      dots.forEach((d, n) => {
+        const active = n === current;
+        // restart animace průběhu
+        d.classList.remove('is-active');
+        void d.offsetWidth;
+        d.classList.toggle('is-active', active);
+        if (active) d.setAttribute('aria-current', 'true');
+        else d.removeAttribute('aria-current');
+      });
+    };
+
+    const start = () => {
+      if (reduced) return;
+      stop();
+      timer = window.setInterval(() => show(current + 1), interval);
+    };
+    const stop = () => window.clearInterval(timer);
+
+    dots.forEach((d) =>
+      d.addEventListener('click', () => {
+        const target = Number(d.dataset.slideTo);
+        if (target === current) return;
+        show(target);
+        start();
+      })
+    );
+
+    // šetří výkon, když karta není vidět
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+
+    // přiblížení první fotky i průběh linky sladit se startem časovače
+    const restartAnimation = (el: HTMLElement | null) => {
+      if (!el) return;
+      el.style.animation = 'none';
+      void el.offsetWidth;
+      el.style.animation = '';
+    };
+    restartAnimation(slides[0].querySelector('img'));
+    dots[0]?.classList.remove('is-active');
+    void dots[0]?.offsetWidth;
+    dots[0]?.classList.add('is-active');
+
+    start();
+  }
+</script>

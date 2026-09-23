@@ -1,0 +1,156 @@
+---
+import { Image } from 'astro:assets';
+import side from '../assets/img/IVglow37.jpg';
+import { treatments, extras, formatPrice } from '../data/services';
+import BookingButton from './BookingButton.astro';
+---
+
+<section class="section pricing" id="cenik">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">ceník služeb</span>
+      <h2 class="section-title">Ošetření a ceny</h2>
+      <span class="divider"></span>
+    </div>
+
+    <div class="pricing__grid">
+      <div class="pricing__photo reveal">
+        <Image
+          src={side}
+          alt="Kosmetická masáž obličeje a dekoltu"
+          widths={[400, 640, 900]}
+          sizes="(max-width: 900px) 100vw, 35vw"
+        />
+      </div>
+
+      <div class="pricing__lists">
+        <h3 class="pricing__group reveal">Ošetření pleti</h3>
+        <ul class="price-list">
+          {
+            treatments.map((s) => (
+              <li class="price-item reveal">
+                <div class="price-item__row">
+                  <span class="price-item__name">{s.name}</span>
+                  <span class="price-item__price">{formatPrice(s)}</span>
+                </div>
+                {s.description && <p class="price-item__desc">{s.description}</p>}
+              </li>
+            ))
+          }
+        </ul>
+
+        <h3 class="pricing__group reveal">Doplňkové služby</h3>
+        <ul class="price-list price-list--compact">
+          {
+            extras.map((s) => (
+              <li class="price-item reveal">
+                <div class="price-item__row">
+                  <span class="price-item__name">{s.name}</span>
+                  <span class="price-item__price">{formatPrice(s)}</span>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+
+        <p class="pricing__note reveal">
+          Ošetření bude individuálně přizpůsobeno typu a stavu pleti.
+        </p>
+        <div class="reveal">
+          <BookingButton />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing__grid {
+    display: grid;
+    grid-template-columns: 4fr 7fr;
+    gap: clamp(40px, 6vw, 88px);
+    align-items: start;
+  }
+
+  .pricing__photo {
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+  }
+
+  .pricing__photo :global(img) {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+  }
+
+  .pricing__group {
+    font-size: 1.75rem;
+    margin-bottom: 8px;
+  }
+
+  .pricing__group:not(:first-child) {
+    margin-top: 48px;
+  }
+
+  .price-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .price-item {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .price-list--compact .price-item {
+    padding: 12px 0;
+  }
+
+  .price-item__row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .price-item__name {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .price-item__price {
+    flex-shrink: 0;
+    font-weight: 400;
+    color: var(--gold-700);
+    white-space: nowrap;
+  }
+
+  .price-item__desc {
+    margin: 6px 0 0;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    max-width: 34rem;
+  }
+
+  .pricing__note {
+    margin: 36px 0 28px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.35rem;
+    color: var(--gold-900);
+  }
+
+  @media (max-width: 900px) {
+    .pricing__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pricing__photo {
+      display: none;
+    }
+  }
+</style>
