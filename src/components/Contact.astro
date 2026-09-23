@@ -1,5 +1,5 @@
 ---
-import { site } from '../data/site';
+import { site, mapUrl } from '../data/site';
 import InstagramIcon from './InstagramIcon.astro';
 import BookingButton from './BookingButton.astro';
 ---
@@ -34,7 +34,7 @@ import BookingButton from './BookingButton.astro';
           {site.address.street}<br />
           {site.address.zip} {site.address.city}
         </address>
-        <a href={site.mapUrl} class="contact__link" target="_blank" rel="noopener">
+        <a href={mapUrl} class="contact__link" target="_blank" rel="noopener">
           Zobrazit na mapě →
         </a>
       </div>

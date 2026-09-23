@@ -13,8 +13,12 @@ export const site = {
     zip: '397 01',
     country: 'CZ',
   },
-  mapUrl: 'https://mapy.com/s/?q=Zeyerova%202738%2C%20P%C3%ADsek',
 };
+
+/** Odkaz na Mapy.com – oficiální vyhledávací URL, najde adresu a zobrazí ji špendlíkem */
+export const mapUrl = `https://mapy.com/fnc/v1/search?query=${encodeURIComponent(
+  `${site.address.street}, ${site.address.zip} ${site.address.city}`
+)}`;
 
 /**
  * Tlačítko „Objednat se“ – jediné místo, kde se mění cíl objednávky.
