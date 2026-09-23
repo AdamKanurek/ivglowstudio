@@ -65,14 +65,16 @@ import BookingButton from './BookingButton.astro';
 </section>
 
 <style>
+  /* ceník vlevo, fotka vpravo – aby se strany nekryly se sekcí O mně nad ním */
   .pricing__grid {
     display: grid;
-    grid-template-columns: 4fr 7fr;
+    grid-template-columns: 7fr 4fr;
     gap: clamp(40px, 6vw, 88px);
     align-items: start;
   }
 
   .pricing__photo {
+    order: 2;
     position: sticky;
     top: calc(var(--header-h) + 24px);
   }
