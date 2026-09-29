@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
-import { site } from '../data/site';
+import { site, legal } from '../data/site';
 
 const year = new Date().getFullYear();
 ---
@@ -12,7 +12,15 @@ const year = new Date().getFullYear();
     <p>
       {site.address.street}, {site.address.zip} {site.address.city} ·
       <a href={site.phoneHref}>{site.phone}</a> ·
-      <a href={site.instagramUrl} target="_blank" rel="noopener">{site.instagram}</a>
+      <a href={site.instagramUrl} target="_blank" rel="noopener">{site.instagram}</a> ·
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+    </p>
+    <p class="footer__legal">
+      Provozovatel: {legal.name} · IČO {legal.ico} · sídlo {legal.seat} · {legal.register}
+    </p>
+    <p class="footer__legal">
+      Mimosoudní řešení spotřebitelských sporů: Česká obchodní inspekce,
+      <a href="https://adr.coi.cz" target="_blank" rel="noopener">adr.coi.cz</a>
     </p>
     <p class="footer__copy">© {year} {site.name}</p>
   </div>
@@ -51,6 +59,12 @@ const year = new Date().getFullYear();
 
   .footer p {
     margin: 0;
+  }
+
+  .footer__legal {
+    max-width: 44rem;
+    font-size: 0.8rem;
+    line-height: 1.6;
   }
 
   .footer__copy {

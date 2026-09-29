@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.ivglowstudio.cz/sitemap-index.xml
+Sitemap: https://ivglowstudio.cz/sitemap-index.xml

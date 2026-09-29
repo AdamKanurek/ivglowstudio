@@ -56,6 +56,15 @@ import BookingButton from './BookingButton.astro';
         <p class="pricing__note reveal">
           Ošetření bude individuálně přizpůsobeno typu a stavu pleti.
         </p>
+
+        <div class="voucher reveal">
+          <span class="voucher__eyebrow">dárkový poukaz</span>
+          <p>
+            Chcete někomu udělat radost? V salonu je možné zakoupit dárkový poukaz na ošetření.
+            Stačí se ozvat.
+          </p>
+        </div>
+
         <div class="reveal">
           <BookingButton />
         </div>
@@ -144,6 +153,27 @@ import BookingButton from './BookingButton.astro';
     font-style: italic;
     font-size: 1.35rem;
     color: var(--gold-900);
+  }
+
+  .voucher {
+    margin: 0 0 32px;
+    padding: 24px 28px;
+    background: var(--bg-alt);
+    border-left: 2px solid var(--gold-500);
+  }
+
+  .voucher__eyebrow {
+    display: block;
+    font-family: var(--font-script);
+    font-size: 1.9rem;
+    line-height: 1;
+    color: var(--gold-500);
+    margin-bottom: 8px;
+  }
+
+  .voucher p {
+    margin: 0;
+    color: var(--text-muted);
   }
 
   @media (max-width: 900px) {

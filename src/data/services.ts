@@ -14,6 +14,8 @@ export const treatments: Service[] = [
     name: 'Čištění pleti metodou 10v1',
     price: 1700,
     from: true,
+    description:
+      'Autorizovaná metoda profesionálního hloubkového čištění pleti, která kombinuje 10 navazujících kroků péče pro důkladné vyčištění, osvěžení a revitalizaci pleti. Vhodné pro problematickou a aknózní pleť a pro pleť s černými tečkami a komedony.',
   },
   {
     name: 'Rozjasňující ošetření s vitamínem C',

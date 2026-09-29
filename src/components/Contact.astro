@@ -1,7 +1,6 @@
 ---
 import { site, mapUrl } from '../data/site';
 import InstagramIcon from './InstagramIcon.astro';
-import BookingButton from './BookingButton.astro';
 ---
 
 <section class="section contact" id="kontakt">
@@ -10,22 +9,29 @@ import BookingButton from './BookingButton.astro';
       <span class="eyebrow">kontakt</span>
       <h2 class="section-title">Těším se na vás</h2>
       <span class="divider"></span>
+      <p class="contact__intro">Objednat se můžete přes Instagram, telefonicky nebo e-mailem.</p>
     </div>
 
     <div class="contact__grid">
       <div class="contact__card reveal">
-        <h3>Telefon</h3>
-        <a href={site.phoneHref} class="contact__value">{site.phone}</a>
-        <p>Objednávky telefonicky nebo SMS</p>
-      </div>
-
-      <div class="contact__card reveal">
         <h3>Instagram</h3>
-        <a href={site.instagramUrl} class="contact__value contact__ig" target="_blank" rel="noopener">
+        <a href={site.instagramUrl} class="contact__value" target="_blank" rel="noopener">
           <InstagramIcon size={22} />
           {site.instagram}
         </a>
-        <p>Sledujte novinky ze salonu</p>
+        <p>Objednávky i novinky ze salonu</p>
+      </div>
+
+      <div class="contact__card reveal">
+        <h3>Telefon</h3>
+        <a href={site.phoneHref} class="contact__value">{site.phone}</a>
+        <p>Zavolejte nebo napište SMS</p>
+      </div>
+
+      <div class="contact__card reveal">
+        <h3>E-mail</h3>
+        <a href={`mailto:${site.email}`} class="contact__value contact__value--email">{site.email}</a>
+        <p>Objednávky i dotazy</p>
       </div>
 
       <div class="contact__card reveal">
@@ -40,27 +46,39 @@ import BookingButton from './BookingButton.astro';
       </div>
     </div>
 
-    <div class="contact__cta reveal">
-      <BookingButton />
+    <div class="contact__info reveal">
+      <div>
+        <h3>Otevírací doba</h3>
+        <p>{site.openingHours}</p>
+      </div>
+      <div>
+        <h3>Parkování</h3>
+        <p>{site.parking}</p>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
+  .contact__intro {
+    margin: 24px 0 0;
+    color: var(--text-muted);
+  }
+
   .contact__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
   }
 
   .contact__card {
-    padding: 40px 28px;
+    padding: 36px 20px;
     text-align: center;
     background: var(--surface);
     border: 1px solid var(--line);
   }
 
-  .contact__card h3 {
+  h3 {
     font-family: var(--font-sans);
     font-size: 0.75rem;
     font-weight: 500;
@@ -75,12 +93,17 @@ import BookingButton from './BookingButton.astro';
     align-items: center;
     gap: 10px;
     font-family: var(--font-serif);
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-style: normal;
     line-height: 1.3;
     color: var(--gold-900);
     text-decoration: none;
     margin-bottom: 12px;
+  }
+
+  .contact__value--email {
+    font-size: 1.3rem;
+    overflow-wrap: anywhere;
   }
 
   address.contact__value {
@@ -103,13 +126,36 @@ import BookingButton from './BookingButton.astro';
     text-underline-offset: 4px;
   }
 
-  .contact__cta {
-    margin-top: 48px;
-    text-align: center;
+  .contact__info {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    margin-top: 20px;
   }
 
-  @media (max-width: 860px) {
+  .contact__info > div {
+    padding: 28px 32px;
+    background: var(--bg-alt);
+  }
+
+  .contact__info h3 {
+    margin-bottom: 8px;
+  }
+
+  .contact__info p {
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 1000px) {
     .contact__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .contact__grid,
+    .contact__info {
       grid-template-columns: 1fr;
     }
   }

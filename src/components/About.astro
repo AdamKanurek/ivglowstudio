@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import portrait from '../assets/img/IVglow36.jpg';
+import { site } from '../data/site';
 ---
 
 <section class="section section--alt about" id="o-mne">
@@ -30,6 +31,7 @@ import portrait from '../assets/img/IVglow36.jpg';
         Ke každé klientce přistupuji individuálně, protože věřím, že každá pleť i každá žena má své
         vlastní potřeby.
       </p>
+      <p class="about__sign">{site.owner}</p>
     </div>
   </div>
 </section>
@@ -71,6 +73,15 @@ import portrait from '../assets/img/IVglow36.jpg';
     font-size: 1.5rem;
     line-height: 1.45;
     color: var(--gold-900);
+  }
+
+  .about__sign {
+    margin: 28px 0 0;
+    font-family: var(--font-script);
+    font-size: 2.4rem;
+    word-spacing: 0.25em;
+    line-height: 1;
+    color: var(--gold-500);
   }
 
   @media (max-width: 900px) {

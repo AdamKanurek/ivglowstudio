@@ -19,6 +19,7 @@ const jsonLd = {
   description: site.description,
   url: Astro.site?.toString(),
   telephone: site.phoneHref.replace('tel:', ''),
+  email: site.email,
   image: new URL(og.src, Astro.site).toString(),
   sameAs: [site.instagramUrl],
   address: {
