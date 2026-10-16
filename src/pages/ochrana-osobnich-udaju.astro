@@ -1,0 +1,185 @@
+---
+/**
+ * Zásady ochrany osobních údajů – NÁVRH připravený pro klientku.
+ * Před ostrým spuštěním nechat potvrdit klientkou (doby uložení, příjemci, fotografie)
+ * a ideálně zkontrolovat právníkem. Kontakty a identifikace se berou z src/data/site.ts.
+ */
+import LegalPage from '../layouts/LegalPage.astro';
+import { site, legal, home } from '../data/site';
+---
+
+<LegalPage
+  title="Ochrana osobních údajů – IV Glow studio"
+  description="Jak kosmetický salon IV Glow studio v Písku zpracovává osobní údaje klientek: jaké údaje, proč, jak dlouho a jaká máte práva."
+  heading="Zásady ochrany osobních údajů"
+  meta="Datum účinnosti: 16. 10. 2026"
+>
+  <p>
+    Vážím si vaší důvěry. Na této stránce najdete srozumitelně popsáno, jaké osobní údaje v salonu
+    IV GLOW studio zpracovávám, proč to dělám, jak dlouho je uchovávám a jaká máte práva. Zásady
+    vycházejí z nařízení Evropského parlamentu a Rady (EU) 2016/679 (GDPR) a zákona č. 110/2019 Sb.,
+    o zpracování osobních údajů.
+  </p>
+
+  <h2>1. Kdo vaše údaje zpracovává</h2>
+  <p>Správcem osobních údajů je:</p>
+  <dl class="legal__ids">
+    <dt>Jméno a příjmení</dt><dd>{legal.name}</dd>
+    <dt>IČO</dt><dd>{legal.ico}</dd>
+    <dt>Sídlo</dt><dd>{legal.seat}</dd>
+    <dt>Telefon</dt><dd><a href={site.phoneHref}>{site.phone}</a></dd>
+    <dt>E-mail</dt><dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+  </dl>
+  <p>
+    S jakýmkoli dotazem nebo žádostí ohledně osobních údajů se na mě můžete obrátit na uvedených
+    kontaktech nebo osobně v salonu. Pověřence pro ochranu osobních údajů jsem jmenovat nemusela.
+  </p>
+
+  <h2>2. Jaké údaje zpracovávám</h2>
+  <ul>
+    <li>
+      <strong>Identifikační a kontaktní údaje</strong> – jméno a příjmení, telefon, e-mail, případně
+      uživatelské jméno na Instagramu, pokud mi napíšete tam.
+    </li>
+    <li>
+      <strong>Údaje o objednávkách</strong> – termín, zvolená služba, vzájemná komunikace.
+    </li>
+    <li>
+      <strong>Údaje o pleti a zdravotním stavu</strong> – typ a stav pleti, alergie, přecitlivělost,
+      kožní obtíže, užívané léky a přípravky, předchozí kosmetické či dermatologické zákroky a
+      záznamy o provedených ošetřeních (tzv. karta klientky).
+    </li>
+    <li>
+      <strong>Platební a účetní údaje</strong> – údaje na dokladech o zaplacení a o prodaných dárkových
+      poukazech.
+    </li>
+    <li>
+      <strong>Fotografie</strong> – pouze pokud k jejich pořízení nebo zveřejnění dáte samostatný
+      souhlas (např. fotografie pleti před a po ošetření).
+    </li>
+  </ul>
+
+  <h2>3. Proč údaje zpracovávám a jak dlouho je uchovávám</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Účel</th>
+        <th>Právní základ</th>
+        <th>Doba uložení</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-label="Účel">Objednání termínu a komunikace s vámi</td>
+        <td data-label="Právní základ">Jednání o smlouvě a její plnění (čl. 6 odst. 1 písm. b) GDPR)</td>
+        <td data-label="Doba uložení">Po dobu vyřízení objednávky, nejdéle 1 rok od poslední komunikace</td>
+      </tr>
+      <tr>
+        <td data-label="Účel">Poskytnutí kosmetické služby</td>
+        <td data-label="Právní základ">Plnění smlouvy (čl. 6 odst. 1 písm. b) GDPR)</td>
+        <td data-label="Doba uložení">Po dobu trvání našeho vztahu, nejdéle 3 roky od poslední návštěvy</td>
+      </tr>
+      <tr>
+        <td data-label="Účel">Karta klientky – údaje o pleti a zdravotním stavu pro bezpečné ošetření</td>
+        <td data-label="Právní základ">Váš výslovný souhlas (čl. 9 odst. 2 písm. a) GDPR)</td>
+        <td data-label="Doba uložení">Nejdéle 3 roky od poslední návštěvy, nebo do odvolání souhlasu</td>
+      </tr>
+      <tr>
+        <td data-label="Účel">Vystavení dokladů, vedení účetnictví a daňové evidence</td>
+        <td data-label="Právní základ">Plnění právní povinnosti (čl. 6 odst. 1 písm. c) GDPR)</td>
+        <td data-label="Doba uložení">Po dobu stanovenou daňovými a účetními předpisy (zpravidla až 10 let)</td>
+      </tr>
+      <tr>
+        <td data-label="Účel">Dárkové poukazy</td>
+        <td data-label="Právní základ">Plnění smlouvy (čl. 6 odst. 1 písm. b) GDPR)</td>
+        <td data-label="Doba uložení">Po dobu platnosti poukazu, doklady podle daňových předpisů</td>
+      </tr>
+      <tr>
+        <td data-label="Účel">Vyřízení reklamací a ochrana právních nároků</td>
+        <td data-label="Právní základ">Oprávněný zájem (čl. 6 odst. 1 písm. f) GDPR)</td>
+        <td data-label="Doba uložení">Po dobu vyřízení reklamace a běhu promlčecí lhůty (zpravidla 3 roky)</td>
+      </tr>
+      <tr>
+        <td data-label="Účel">Fotografie a jejich zveřejnění (web, Instagram)</td>
+        <td data-label="Právní základ">Váš souhlas (čl. 6 odst. 1 písm. a) GDPR)</td>
+        <td data-label="Doba uložení">Do odvolání souhlasu</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Po uplynutí doby uložení údaje bezpečně smažu nebo skartuji.</p>
+
+  <h2>4. Údaje o pleti a zdravotním stavu</h2>
+  <p>
+    Informace o alergiích, kožních obtížích, lécích nebo předchozích zákrocích potřebuji proto, abych
+    pro vás zvolila vhodné a bezpečné ošetření. Jde o zvláštní kategorii osobních údajů, a proto je
+    zpracovávám jen s vaším výslovným souhlasem a jen v nezbytném rozsahu.
+  </p>
+  <p>
+    Poskytnutí těchto údajů je dobrovolné. Bez nich ale nemusí být možné některá ošetření bezpečně
+    provést. Souhlas můžete kdykoli odvolat. Odvolání nemá vliv na zpracování, které proběhlo před
+    ním.
+  </p>
+
+  <h2>5. Komu mohou být údaje předány</h2>
+  <p>Vaše údaje neprodávám ani je nikomu neposkytuji pro jeho vlastní marketing. Přístup k nim mohou mít:</p>
+  <ul>
+    <li>účetní nebo daňový poradce – v rozsahu nutném pro vedení účetnictví a daní,</li>
+    <li>poskytovatelé webhostingu a e-mailu, na jejichž serverech běží web a e-mailová schránka,</li>
+    <li>banka – při platbě QR kódem (údaje o platbě),</li>
+    <li>orgány veřejné moci – pouze pokud to ukládá zákon.</li>
+  </ul>
+  <p>
+    Pokud mi píšete přes Instagram, zpracovává komunikaci také společnost Meta Platforms jako
+    samostatný správce podle svých vlastních zásad. Meta může údaje předávat i mimo Evropskou unii.
+    Jinak vaše údaje do zemí mimo EU nepředávám.
+  </p>
+
+  <h2>6. Webové stránky a cookies</h2>
+  <p>
+    Tyto webové stránky <strong>nepoužívají cookies</strong> ani nástroje pro měření návštěvnosti či
+    reklamu. Písma jsou uložena přímo na webu, takže se při jeho načtení nepřenášejí žádné údaje
+    třetím stranám.
+  </p>
+  <p>
+    Poskytovatel hostingu může z technických a bezpečnostních důvodů krátkodobě ukládat záznamy o
+    přístupech na web (např. IP adresu a čas přístupu). Odkazy na Mapy.com a Instagram vedou na
+    stránky jiných provozovatelů, kde platí jejich vlastní zásady.
+  </p>
+
+  <h2>7. Zabezpečení</h2>
+  <p>
+    Osobní údaje chráním před ztrátou a zneužitím. Přístup k nim mám pouze já, karty klientek
+    uchovávám zabezpečeně a elektronická zařízení chráním heslem.
+  </p>
+
+  <h2>8. Vaše práva</h2>
+  <p>V souvislosti se zpracováním osobních údajů máte právo:</p>
+  <ul>
+    <li>na <strong>přístup</strong> k osobním údajům – zjistit, jaké údaje o vás zpracovávám,</li>
+    <li>na <strong>opravu</strong> nepřesných nebo neúplných údajů,</li>
+    <li>na <strong>výmaz</strong> údajů, pokud již není důvod je zpracovávat,</li>
+    <li>na <strong>omezení zpracování</strong>,</li>
+    <li>na <strong>přenositelnost</strong> údajů,</li>
+    <li>vznést <strong>námitku</strong> proti zpracování založenému na oprávněném zájmu,</li>
+    <li><strong>kdykoli odvolat souhlas</strong>, pokud zpracování na souhlasu závisí.</li>
+  </ul>
+  <p>
+    Žádost můžete podat telefonicky, e-mailem nebo osobně v salonu. Vyřídím ji bez zbytečného
+    odkladu, nejpozději do jednoho měsíce.
+  </p>
+  <p>
+    Pokud se domníváte, že vaše údaje zpracovávám v rozporu s právními předpisy, můžete podat stížnost
+    u dozorového úřadu: <strong>Úřad pro ochranu osobních údajů</strong>, Pplk. Sochora 27, 170 00
+    Praha 7, <a href="https://uoou.gov.cz" target="_blank" rel="noopener">uoou.gov.cz</a>.
+  </p>
+
+  <h2>9. Automatizované rozhodování</h2>
+  <p>Nedochází k automatizovanému rozhodování ani profilování.</p>
+
+  <h2>10. Změny těchto zásad</h2>
+  <p>
+    Zásady mohu průběžně aktualizovat, například při změně poskytovaných služeb nebo právních
+    předpisů. Aktuální znění je vždy zveřejněno na této stránce. Související pravidla poskytování
+    služeb najdete v <a href={`${home}obchodni-podminky/`}>obchodních podmínkách</a>.
+  </p>
+</LegalPage>

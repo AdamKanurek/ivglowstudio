@@ -1,0 +1,202 @@
+---
+/**
+ * Společný layout právních stránek (obchodní podmínky, ochrana osobních údajů).
+ * Obsah stránky se vkládá přes <slot />, styly pro nadpisy a seznamy platí pro celý obsah.
+ */
+import Base from './Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { home } from '../data/site';
+
+interface Props {
+  /** titulek v prohlížeči */
+  title: string;
+  description: string;
+  /** hlavní nadpis stránky */
+  heading: string;
+  /** řádek pod nadpisem, např. datum účinnosti */
+  meta?: string;
+}
+
+const { title, description, heading, meta } = Astro.props;
+---
+
+<Base title={title} description={description}>
+  <Header />
+  <main class="legal">
+    <div class="container legal__inner">
+      <a href={home} class="legal__back">← Zpět na úvod</a>
+
+      <span class="eyebrow">IV Glow studio</span>
+      <h1 class="legal__title">{heading}</h1>
+      {meta && <p class="legal__meta">{meta}</p>}
+      <span class="divider legal__divider"></span>
+
+      <slot />
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .legal {
+    padding-block: calc(var(--header-h) + 56px) var(--section-y);
+  }
+
+  .legal__inner {
+    max-width: 820px;
+  }
+
+  .legal__back {
+    display: inline-block;
+    margin-bottom: 32px;
+    font-size: 0.9rem;
+    color: var(--gold-700);
+    text-decoration: none;
+  }
+
+  .legal__back:hover {
+    color: var(--gold-500);
+  }
+
+  .legal__title {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+  }
+
+  .legal__meta {
+    margin: 12px 0 0;
+    color: var(--text-muted);
+  }
+
+  .legal__divider {
+    margin: 24px 0 8px;
+  }
+
+  /* obsah vložený přes slot */
+  .legal :global(h2) {
+    font-size: 1.6rem;
+    margin: 48px 0 16px;
+  }
+
+  .legal :global(h3) {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-700);
+    margin: 28px 0 10px;
+  }
+
+  .legal :global(ol) {
+    margin: 0;
+    padding-left: 1.5em;
+  }
+
+  .legal :global(ol > li) {
+    padding-left: 0.4em;
+    margin-bottom: 10px;
+  }
+
+  .legal :global(ol > li::marker) {
+    color: var(--gold-700);
+  }
+
+  .legal :global(ul) {
+    margin: 8px 0 16px;
+    padding-left: 1.2em;
+  }
+
+  .legal :global(ul > li) {
+    margin-bottom: 6px;
+  }
+
+  .legal :global(.legal__ids) {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 6px 24px;
+    margin: 0 0 16px;
+    padding: 20px 24px;
+    background: var(--bg-alt);
+  }
+
+  .legal :global(.legal__ids dt) {
+    color: var(--text-muted);
+  }
+
+  .legal :global(.legal__ids dd) {
+    margin: 0;
+    color: var(--text);
+  }
+
+  .legal :global(.legal__note) {
+    margin: 16px 0;
+    padding: 16px 20px;
+    background: var(--bg-alt);
+    border-left: 2px solid var(--gold-500);
+  }
+
+  .legal :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 16px;
+    font-size: 0.95rem;
+  }
+
+  .legal :global(th),
+  .legal :global(td) {
+    text-align: left;
+    vertical-align: top;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .legal :global(th) {
+    font-weight: 500;
+    color: var(--gold-900);
+    background: var(--bg-alt);
+  }
+
+  .legal :global(a) {
+    color: var(--gold-700);
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 640px) {
+    .legal :global(.legal__ids) {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .legal :global(.legal__ids dd) {
+      margin-bottom: 8px;
+    }
+
+    /* tabulka se na mobilu skládá do bloků */
+    .legal :global(table),
+    .legal :global(tbody),
+    .legal :global(tr),
+    .legal :global(td) {
+      display: block;
+    }
+
+    .legal :global(thead) {
+      display: none;
+    }
+
+    .legal :global(tr) {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .legal :global(td) {
+      padding: 2px 0;
+      border: 0;
+    }
+
+    .legal :global(td::before) {
+      content: attr(data-label) ': ';
+      color: var(--text-muted);
+    }
+  }
+</style>

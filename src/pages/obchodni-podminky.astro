@@ -3,413 +3,306 @@
  * Všeobecné obchodní podmínky – převzato doslova z dokumentu klientky (IV_GLOW_studio_VOP.docx).
  * Text neupravovat bez souhlasu klientky, jde o právní dokument.
  */
-import Base from '../layouts/Base.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { home } from '../data/site';
+import LegalPage from '../layouts/LegalPage.astro';
 ---
 
-<Base
+<LegalPage
   title="Všeobecné obchodní podmínky – IV Glow studio"
   description="Všeobecné obchodní podmínky kosmetického salonu IV Glow studio v Písku: objednávání, rušení rezervací, ceny, reklamace a dárkové poukazy."
+  heading="Všeobecné obchodní podmínky"
+  meta="Datum účinnosti: 1. 9. 2026"
 >
-  <Header />
-  <main class="legal">
-    <div class="container legal__inner">
-      <a href={home} class="legal__back">← Zpět na úvod</a>
+    <h2>1. Identifikační údaje provozovatele</h2>
+    <p>Provozovatelem kosmetického salonu IV GLOW studio je:</p>
+    <dl class="legal__ids">
+      <dt>Jméno a příjmení</dt><dd>Ivana Vacíková</dd>
+      <dt>IČO</dt><dd>29742005</dd>
+      <dt>Adresa</dt><dd>Zeyerova 2738, 397 01 Písek</dd>
+      <dt>Telefon</dt><dd>721 015 167</dd>
+      <dt>E-mail</dt><dd>isafrankova@email.cz</dd>
+      <dt>Webové stránky</dt><dd>https://ivglowstudio.cz</dd>
+    </dl>
+    <p>
+      (dále jen „provozovatel“). Tyto všeobecné obchodní podmínky upravují pravidla poskytování
+      kosmetických služeb a prodeje dárkových poukazů v salonu IV GLOW studio.
+    </p>
 
-      <span class="eyebrow">IV Glow studio</span>
-      <h1 class="legal__title">Všeobecné obchodní podmínky</h1>
-      <p class="legal__meta">Datum účinnosti: 1. 9. 2026</p>
-      <span class="divider legal__divider"></span>
+    <h2>2. Nabízené služby</h2>
+    <ol>
+      <li>
+        Salon IV GLOW studio poskytuje zejména následující služby:
+        <ul>
+          <li>kosmetická ošetření,</li>
+          <li>čištění pleti,</li>
+          <li>masáže obličeje.</li>
+        </ul>
+      </li>
+      <li>
+        Aktuální nabídka služeb, jejich popis, délka trvání a ceny jsou uvedeny na webových
+        stránkách salonu, na jeho sociálních sítích nebo jsou zákazníkům sděleny individuálně před
+        objednáním.
+      </li>
+      <li>
+        Konkrétní rozsah služby je sjednán se zákazníkem při objednání, případně před zahájením
+        ošetření.
+      </li>
+      <li>
+        Výsledky kosmetického ošetření jsou individuální a mohou se lišit v závislosti na typu a
+        aktuálním stavu pleti, jejích vlastnostech a dalších okolnostech. Provozovatel nemůže zaručit
+        konkrétní estetický výsledek, pokud takovou záruku výslovně neposkytne.
+      </li>
+      <li>Kosmetické služby nenahrazují lékařskou péči ani diagnostiku kožních onemocnění.</li>
+    </ol>
 
-      <h2>1. Identifikační údaje provozovatele</h2>
-      <p>Provozovatelem kosmetického salonu IV GLOW studio je:</p>
-      <dl class="legal__ids">
-        <dt>Jméno a příjmení</dt><dd>Ivana Vacíková</dd>
-        <dt>IČO</dt><dd>29742005</dd>
-        <dt>Adresa</dt><dd>Zeyerova 2738, 397 01 Písek</dd>
-        <dt>Telefon</dt><dd>721 015 167</dd>
-        <dt>E-mail</dt><dd>isafrankova@email.cz</dd>
-        <dt>Webové stránky</dt><dd>https://ivglowstudio.cz</dd>
-      </dl>
-      <p>
-        (dále jen „provozovatel“). Tyto všeobecné obchodní podmínky upravují pravidla poskytování
-        kosmetických služeb a prodeje dárkových poukazů v salonu IV GLOW studio.
-      </p>
+    <h2>3. Objednávání služeb</h2>
+    <ol>
+      <li>
+        Objednání služeb je možné telefonicky, prostřednictvím SMS nebo zprávou na sociálních sítích
+        salonu.
+      </li>
+      <li>
+        Objednávka je považována za potvrzenou okamžikem, kdy provozovatel zákazníkovi potvrdí
+        konkrétní termín a objednanou službu.
+      </li>
+      <li>
+        Zákazník je povinen uvést pravdivé a potřebné informace, které jsou nezbytné pro řádné a
+        bezpečné poskytnutí služby.
+      </li>
+      <li>
+        Pokud provozovatel nemůže z vážných provozních důvodů sjednaný termín dodržet, informuje
+        zákazníka co nejdříve a nabídne mu náhradní termín.
+      </li>
+      <li>
+        Zákazník se dostaví na ošetření včas. Při pozdním příchodu může být ošetření přiměřeně
+        zkráceno s ohledem na navazující rezervace, pokud lze službu i tak řádně a bezpečně
+        poskytnout.
+      </li>
+      <li>
+        Pokud zpoždění znemožňuje řádné provedení služby, může se zákazník s provozovatelem
+        dohodnout na jiném termínu.
+      </li>
+    </ol>
 
-      <h2>2. Nabízené služby</h2>
-      <ol>
-        <li>
-          Salon IV GLOW studio poskytuje zejména následující služby:
-          <ul>
-            <li>kosmetická ošetření,</li>
-            <li>čištění pleti,</li>
-            <li>masáže obličeje.</li>
-          </ul>
-        </li>
-        <li>
-          Aktuální nabídka služeb, jejich popis, délka trvání a ceny jsou uvedeny na webových
-          stránkách salonu, na jeho sociálních sítích nebo jsou zákazníkům sděleny individuálně před
-          objednáním.
-        </li>
-        <li>
-          Konkrétní rozsah služby je sjednán se zákazníkem při objednání, případně před zahájením
-          ošetření.
-        </li>
-        <li>
-          Výsledky kosmetického ošetření jsou individuální a mohou se lišit v závislosti na typu a
-          aktuálním stavu pleti, jejích vlastnostech a dalších okolnostech. Provozovatel nemůže zaručit
-          konkrétní estetický výsledek, pokud takovou záruku výslovně neposkytne.
-        </li>
-        <li>Kosmetické služby nenahrazují lékařskou péči ani diagnostiku kožních onemocnění.</li>
-      </ol>
+    <h2>4. Změna a zrušení rezervace</h2>
+    <ol>
+      <li>
+        Zákazník může požádat o změnu nebo zrušení rezervace telefonicky, prostřednictvím SMS nebo
+        zprávou na sociálních sítích salonu.
+      </li>
+      <li>Salon v současné době nemá stanovenou pevnou lhůtu pro zrušení rezervace.</li>
+      <li>
+        Zákazníkům se doporučuje zrušit nebo změnit termín co nejdříve, aby mohl být nabídnut jinému
+        zájemci.
+      </li>
+      <li>
+        Za zrušení rezervace se podle těchto obchodních podmínek automaticky neúčtuje storno
+        poplatek.
+      </li>
+      <li>
+        Pokud se zákazník na sjednaný termín nedostaví, může jej provozovatel kontaktovat za účelem
+        ověření situace a případné domluvy na dalším postupu.
+      </li>
+      <li>
+        Případná budoucí změna pravidel pro rušení rezervací bude zákazníkům sdělena předem. Nová
+        pravidla nesmějí nepřípustně zasahovat do práv zákazníků vyplývajících z právních předpisů
+        nebo již uzavřené smlouvy.
+      </li>
+    </ol>
 
-      <h2>3. Objednávání služeb</h2>
-      <ol>
-        <li>
-          Objednání služeb je možné telefonicky, prostřednictvím SMS nebo zprávou na sociálních sítích
-          salonu.
-        </li>
-        <li>
-          Objednávka je považována za potvrzenou okamžikem, kdy provozovatel zákazníkovi potvrdí
-          konkrétní termín a objednanou službu.
-        </li>
-        <li>
-          Zákazník je povinen uvést pravdivé a potřebné informace, které jsou nezbytné pro řádné a
-          bezpečné poskytnutí služby.
-        </li>
-        <li>
-          Pokud provozovatel nemůže z vážných provozních důvodů sjednaný termín dodržet, informuje
-          zákazníka co nejdříve a nabídne mu náhradní termín.
-        </li>
-        <li>
-          Zákazník se dostaví na ošetření včas. Při pozdním příchodu může být ošetření přiměřeně
-          zkráceno s ohledem na navazující rezervace, pokud lze službu i tak řádně a bezpečně
-          poskytnout.
-        </li>
-        <li>
-          Pokud zpoždění znemožňuje řádné provedení služby, může se zákazník s provozovatelem
-          dohodnout na jiném termínu.
-        </li>
-      </ol>
+    <h2>5. Ceny a platební podmínky</h2>
+    <ol>
+      <li>
+        Ceny jednotlivých služeb jsou zákazníkům sdělovány před objednáním nebo před zahájením
+        ošetření.
+      </li>
+      <li>Zákazník hradí cenu poskytnuté služby po jejím dokončení přímo v salonu.</li>
+      <li>
+        Pokud se má cena změnit v důsledku změny rozsahu služby nebo přidání dalších úkonů, bude
+        zákazník o nové ceně informován předem a změna bude provedena pouze po jeho souhlasu.
+      </li>
+      <li>
+        Provozovatel vystaví zákazníkovi doklad o zaplacení v souladu s platnými právními předpisy.
+      </li>
+      <li>Přijímané způsoby platby: hotovost nebo QR platba.</li>
+    </ol>
 
-      <h2>4. Změna a zrušení rezervace</h2>
-      <ol>
-        <li>
-          Zákazník může požádat o změnu nebo zrušení rezervace telefonicky, prostřednictvím SMS nebo
-          zprávou na sociálních sítích salonu.
-        </li>
-        <li>Salon v současné době nemá stanovenou pevnou lhůtu pro zrušení rezervace.</li>
-        <li>
-          Zákazníkům se doporučuje zrušit nebo změnit termín co nejdříve, aby mohl být nabídnut jinému
-          zájemci.
-        </li>
-        <li>
-          Za zrušení rezervace se podle těchto obchodních podmínek automaticky neúčtuje storno
-          poplatek.
-        </li>
-        <li>
-          Pokud se zákazník na sjednaný termín nedostaví, může jej provozovatel kontaktovat za účelem
-          ověření situace a případné domluvy na dalším postupu.
-        </li>
-        <li>
-          Případná budoucí změna pravidel pro rušení rezervací bude zákazníkům sdělena předem. Nová
-          pravidla nesmějí nepřípustně zasahovat do práv zákazníků vyplývajících z právních předpisů
-          nebo již uzavřené smlouvy.
-        </li>
-      </ol>
+    <h2>6. Povinnosti zákazníka a bezpečnost ošetření</h2>
+    <ol>
+      <li>
+        Zákazník je povinen před ošetřením upozornit provozovatele na známé alergie, přecitlivělost,
+        podráždění pokožky, aktuální kožní obtíže a další okolnosti, které mohou ovlivnit bezpečnost
+        nebo vhodnost ošetření.
+      </li>
+      <li>
+        Zákazník by měl informovat také o používaných přípravcích, lécích nebo nedávno provedených
+        kosmetických či dermatologických zákrocích, pokud mohou mít vliv na bezpečné provedení
+        služby.
+      </li>
+      <li>
+        Provozovatel může ošetření odmítnout, přerušit nebo navrhnout jeho změnu, pokud by jeho
+        provedení mohlo představovat nepřiměřené zdravotní riziko.
+      </li>
+      <li>Zákazník je povinen dodržovat doporučení k následné péči, pokud mu byla sdělena.</li>
+      <li>
+        Pokud zákazník neposkytne podstatné informace nebo nedodrží doporučenou následnou péči, může
+        to ovlivnit výsledek ošetření. Tím nejsou dotčena zákonná práva zákazníka ani odpovědnost
+        provozovatele za řádné poskytnutí služby.
+      </li>
+    </ol>
 
-      <h2>5. Ceny a platební podmínky</h2>
-      <ol>
-        <li>
-          Ceny jednotlivých služeb jsou zákazníkům sdělovány před objednáním nebo před zahájením
-          ošetření.
-        </li>
-        <li>Zákazník hradí cenu poskytnuté služby po jejím dokončení přímo v salonu.</li>
-        <li>
-          Pokud se má cena změnit v důsledku změny rozsahu služby nebo přidání dalších úkonů, bude
-          zákazník o nové ceně informován předem a změna bude provedena pouze po jeho souhlasu.
-        </li>
-        <li>
-          Provozovatel vystaví zákazníkovi doklad o zaplacení v souladu s platnými právními předpisy.
-        </li>
-        <li>Přijímané způsoby platby: hotovost nebo QR platba.</li>
-      </ol>
+    <h2>7. Reklamace a odpovědnost za vady</h2>
+    <ol>
+      <li>
+        Provozovatel odpovídá za to, že služba bude poskytnuta řádně, v dohodnutém rozsahu a v
+        souladu s platnými právními předpisy.
+      </li>
+      <li>
+        Pokud zákazník zjistí, že služba nebyla poskytnuta řádně, může uplatnit reklamaci bez
+        zbytečného odkladu po zjištění vytýkané vady.
+      </li>
+      <li>
+        Reklamaci lze uplatnit osobně v salonu nebo prostřednictvím těchto kontaktů:
+        <ul>
+          <li>Telefon: 721 015 167</li>
+          <li>E-mail: isafrankova@email.cz</li>
+          <li>Adresa: Zeyerova 2738, 397 01 Písek</li>
+        </ul>
+      </li>
+      <li>
+        Pro usnadnění vyřízení reklamace se doporučuje uvést jméno zákazníka, datum ošetření, popis
+        poskytnuté služby a konkrétní důvod reklamace. Fotografie lze přiložit dobrovolně, pokud jsou
+        pro posouzení relevantní.
+      </li>
+      <li>
+        Provozovatel vydá zákazníkovi potvrzení o uplatnění reklamace a o jejím vyřízení, včetně
+        případného způsobu nápravy, v souladu s platnými právními předpisy.
+      </li>
+      <li>
+        Reklamace spotřebitele bude vyřízena bez zbytečného odkladu, nejpozději ve lhůtě stanovené
+        právními předpisy, zpravidla do 30 dnů od uplatnění reklamace, pokud se provozovatel se
+        zákazníkem nedohodne na delší lhůtě nebo právní předpisy nestanoví jinak.
+      </li>
+      <li>
+        Podle povahy vady a příslušných právních předpisů může zákazníkovi vzniknout právo na
+        odpovídající nápravu, přiměřenou slevu nebo jiný zákonný nárok.
+      </li>
+      <li>
+        Samotná skutečnost, že individuální estetický výsledek neodpovídá subjektivnímu očekávání
+        zákazníka, automaticky neznamená vadu služby. Tím však není vyloučeno právo zákazníka
+        reklamovat službu, pokud nebyla poskytnuta řádně nebo nebyly dodrženy sjednané podmínky.
+      </li>
+    </ol>
 
-      <h2>6. Povinnosti zákazníka a bezpečnost ošetření</h2>
-      <ol>
-        <li>
-          Zákazník je povinen před ošetřením upozornit provozovatele na známé alergie, přecitlivělost,
-          podráždění pokožky, aktuální kožní obtíže a další okolnosti, které mohou ovlivnit bezpečnost
-          nebo vhodnost ošetření.
-        </li>
-        <li>
-          Zákazník by měl informovat také o používaných přípravcích, lécích nebo nedávno provedených
-          kosmetických či dermatologických zákrocích, pokud mohou mít vliv na bezpečné provedení
-          služby.
-        </li>
-        <li>
-          Provozovatel může ošetření odmítnout, přerušit nebo navrhnout jeho změnu, pokud by jeho
-          provedení mohlo představovat nepřiměřené zdravotní riziko.
-        </li>
-        <li>Zákazník je povinen dodržovat doporučení k následné péči, pokud mu byla sdělena.</li>
-        <li>
-          Pokud zákazník neposkytne podstatné informace nebo nedodrží doporučenou následnou péči, může
-          to ovlivnit výsledek ošetření. Tím nejsou dotčena zákonná práva zákazníka ani odpovědnost
-          provozovatele za řádné poskytnutí služby.
-        </li>
-      </ol>
+    <h2>8. Dárkové poukazy</h2>
+    <ol>
+      <li>Salon IV GLOW studio nabízí dárkové poukazy na kosmetické služby.</li>
+      <li>
+        Dárkový poukaz může být vystaven na konkrétní službu nebo na určitou peněžní hodnotu podle
+        aktuální nabídky salonu.
+      </li>
+      <li>
+        Poukaz lze uplatnit po předchozí rezervaci termínu a v souladu s podmínkami uvedenými na
+        poukazu.
+      </li>
+      <li>Platnost dárkových poukazů: 6 měsíců od data vystavení.</li>
+      <li>
+        Pokud si zákazník zvolí službu s vyšší cenou, než je hodnota poukazu, případný rozdíl uhradí
+        podle aktuálního ceníku salonu.
+      </li>
+      <li>
+        Pravidla pro prodloužení platnosti, ztrátu, poškození, nevyužití nebo vrácení poukazu budou
+        zákazníkovi sdělena při jeho zakoupení. Konkrétní pravidla musí být v souladu s platnými
+        právními předpisy.
+      </li>
+      <li>
+        U dárkových poukazů zakoupených na dálku se práva spotřebitele řídí příslušnými právními
+        předpisy a okolnostmi uzavření smlouvy.
+      </li>
+    </ol>
 
-      <h2>7. Reklamace a odpovědnost za vady</h2>
-      <ol>
-        <li>
-          Provozovatel odpovídá za to, že služba bude poskytnuta řádně, v dohodnutém rozsahu a v
-          souladu s platnými právními předpisy.
-        </li>
-        <li>
-          Pokud zákazník zjistí, že služba nebyla poskytnuta řádně, může uplatnit reklamaci bez
-          zbytečného odkladu po zjištění vytýkané vady.
-        </li>
-        <li>
-          Reklamaci lze uplatnit osobně v salonu nebo prostřednictvím těchto kontaktů:
-          <ul>
-            <li>Telefon: 721 015 167</li>
-            <li>E-mail: isafrankova@email.cz</li>
-            <li>Adresa: Zeyerova 2738, 397 01 Písek</li>
-          </ul>
-        </li>
-        <li>
-          Pro usnadnění vyřízení reklamace se doporučuje uvést jméno zákazníka, datum ošetření, popis
-          poskytnuté služby a konkrétní důvod reklamace. Fotografie lze přiložit dobrovolně, pokud jsou
-          pro posouzení relevantní.
-        </li>
-        <li>
-          Provozovatel vydá zákazníkovi potvrzení o uplatnění reklamace a o jejím vyřízení, včetně
-          případného způsobu nápravy, v souladu s platnými právními předpisy.
-        </li>
-        <li>
-          Reklamace spotřebitele bude vyřízena bez zbytečného odkladu, nejpozději ve lhůtě stanovené
-          právními předpisy, zpravidla do 30 dnů od uplatnění reklamace, pokud se provozovatel se
-          zákazníkem nedohodne na delší lhůtě nebo právní předpisy nestanoví jinak.
-        </li>
-        <li>
-          Podle povahy vady a příslušných právních předpisů může zákazníkovi vzniknout právo na
-          odpovídající nápravu, přiměřenou slevu nebo jiný zákonný nárok.
-        </li>
-        <li>
-          Samotná skutečnost, že individuální estetický výsledek neodpovídá subjektivnímu očekávání
-          zákazníka, automaticky neznamená vadu služby. Tím však není vyloučeno právo zákazníka
-          reklamovat službu, pokud nebyla poskytnuta řádně nebo nebyly dodrženy sjednané podmínky.
-        </li>
-      </ol>
+    <h2>9. Ochrana osobních údajů</h2>
+    <ol>
+      <li>
+        Provozovatel zpracovává osobní údaje zákazníků v rozsahu nezbytném pro vyřizování rezervací,
+        poskytování služeb, komunikaci se zákazníky, plnění právních povinností a ochranu svých
+        oprávněných práv a nároků.
+      </li>
+      <li>
+        Zpracovávané údaje mohou zahrnovat zejména jméno, kontaktní údaje, informace o rezervaci a
+        další údaje potřebné pro poskytnutí služby.
+      </li>
+      <li>
+        Informace o alergiích nebo zdravotním stavu mohou představovat zvláštní kategorii osobních
+        údajů. Jejich případné zpracování musí mít odpovídající právní základ a musí být omezeno na
+        nezbytný rozsah.
+      </li>
+      <li>
+        Podrobné informace o zpracování osobních údajů, účelech zpracování, právních základech, době
+        uchování a právech zákazníků budou uvedeny v samostatném dokumentu Zásady ochrany osobních
+        údajů, dostupném na webových stránkách salonu.
+      </li>
+      <li>
+        Zasílání obchodních sdělení a zveřejňování fotografií zákazníků pro propagační účely se řídí
+        příslušnými právními předpisy a samostatnými pravidly. Pokud je vyžadován souhlas, bude
+        získán odděleně.
+      </li>
+    </ol>
 
-      <h2>8. Dárkové poukazy</h2>
-      <ol>
-        <li>Salon IV GLOW studio nabízí dárkové poukazy na kosmetické služby.</li>
-        <li>
-          Dárkový poukaz může být vystaven na konkrétní službu nebo na určitou peněžní hodnotu podle
-          aktuální nabídky salonu.
-        </li>
-        <li>
-          Poukaz lze uplatnit po předchozí rezervaci termínu a v souladu s podmínkami uvedenými na
-          poukazu.
-        </li>
-        <li>Platnost dárkových poukazů: 6 měsíců od data vystavení.</li>
-        <li>
-          Pokud si zákazník zvolí službu s vyšší cenou, než je hodnota poukazu, případný rozdíl uhradí
-          podle aktuálního ceníku salonu.
-        </li>
-        <li>
-          Pravidla pro prodloužení platnosti, ztrátu, poškození, nevyužití nebo vrácení poukazu budou
-          zákazníkovi sdělena při jeho zakoupení. Konkrétní pravidla musí být v souladu s platnými
-          právními předpisy.
-        </li>
-        <li>
-          U dárkových poukazů zakoupených na dálku se práva spotřebitele řídí příslušnými právními
-          předpisy a okolnostmi uzavření smlouvy.
-        </li>
-      </ol>
+    <h2>10. Odstoupení od smlouvy uzavřené na dálku</h2>
+    <ol>
+      <li>
+        Pokud je smlouva uzavřena na dálku způsobem, na který se vztahují zákonná pravidla pro
+        spotřebitelské smlouvy, má zákazník práva stanovená příslušnými právními předpisy.
+      </li>
+      <li>
+        V případech, kdy to zákon stanoví, může mít spotřebitel právo odstoupit od smlouvy ve lhůtě
+        14 dnů od jejího uzavření.
+      </li>
+      <li>
+        Pokud zákazník požaduje zahájení služby před uplynutím lhůty pro odstoupení, budou mu předem
+        poskytnuty potřebné informace a případná žádost či souhlas budou získány způsobem vyžadovaným
+        právními předpisy.
+      </li>
+      <li>
+        Použití tohoto ustanovení a případné zákonné výjimky se posuzují podle konkrétního způsobu
+        objednání a uzavření smlouvy.
+      </li>
+    </ol>
 
-      <h2>9. Ochrana osobních údajů</h2>
-      <ol>
-        <li>
-          Provozovatel zpracovává osobní údaje zákazníků v rozsahu nezbytném pro vyřizování rezervací,
-          poskytování služeb, komunikaci se zákazníky, plnění právních povinností a ochranu svých
-          oprávněných práv a nároků.
-        </li>
-        <li>
-          Zpracovávané údaje mohou zahrnovat zejména jméno, kontaktní údaje, informace o rezervaci a
-          další údaje potřebné pro poskytnutí služby.
-        </li>
-        <li>
-          Informace o alergiích nebo zdravotním stavu mohou představovat zvláštní kategorii osobních
-          údajů. Jejich případné zpracování musí mít odpovídající právní základ a musí být omezeno na
-          nezbytný rozsah.
-        </li>
-        <li>
-          Podrobné informace o zpracování osobních údajů, účelech zpracování, právních základech, době
-          uchování a právech zákazníků budou uvedeny v samostatném dokumentu Zásady ochrany osobních
-          údajů, dostupném na webových stránkách salonu.
-        </li>
-        <li>
-          Zasílání obchodních sdělení a zveřejňování fotografií zákazníků pro propagační účely se řídí
-          příslušnými právními předpisy a samostatnými pravidly. Pokud je vyžadován souhlas, bude
-          získán odděleně.
-        </li>
-      </ol>
+    <h2>11. Mimosoudní řešení spotřebitelských sporů</h2>
+    <ol>
+      <li>
+        Pokud mezi zákazníkem a provozovatelem vznikne spotřebitelský spor, který se nepodaří vyřešit
+        vzájemnou dohodou, může zákazník za podmínek stanovených právními předpisy využít mimosoudní
+        řešení spotřebitelského sporu.
+      </li>
+      <li>
+        Subjektem mimosoudního řešení spotřebitelských sporů je v případech spadajících do jeho
+        působnosti Česká obchodní inspekce (ČOI).
+      </li>
+      <li>
+        Bližší informace jsou dostupné na webových stránkách České obchodní inspekce:
+        <a href="https://coi.gov.cz/informace-o-adr/" target="_blank" rel="noopener"
+          >https://coi.gov.cz/informace-o-adr/</a
+        >
+      </li>
+    </ol>
 
-      <h2>10. Odstoupení od smlouvy uzavřené na dálku</h2>
-      <ol>
-        <li>
-          Pokud je smlouva uzavřena na dálku způsobem, na který se vztahují zákonná pravidla pro
-          spotřebitelské smlouvy, má zákazník práva stanovená příslušnými právními předpisy.
-        </li>
-        <li>
-          V případech, kdy to zákon stanoví, může mít spotřebitel právo odstoupit od smlouvy ve lhůtě
-          14 dnů od jejího uzavření.
-        </li>
-        <li>
-          Pokud zákazník požaduje zahájení služby před uplynutím lhůty pro odstoupení, budou mu předem
-          poskytnuty potřebné informace a případná žádost či souhlas budou získány způsobem vyžadovaným
-          právními předpisy.
-        </li>
-        <li>
-          Použití tohoto ustanovení a případné zákonné výjimky se posuzují podle konkrétního způsobu
-          objednání a uzavření smlouvy.
-        </li>
-      </ol>
-
-      <h2>11. Mimosoudní řešení spotřebitelských sporů</h2>
-      <ol>
-        <li>
-          Pokud mezi zákazníkem a provozovatelem vznikne spotřebitelský spor, který se nepodaří vyřešit
-          vzájemnou dohodou, může zákazník za podmínek stanovených právními předpisy využít mimosoudní
-          řešení spotřebitelského sporu.
-        </li>
-        <li>
-          Subjektem mimosoudního řešení spotřebitelských sporů je v případech spadajících do jeho
-          působnosti Česká obchodní inspekce (ČOI).
-        </li>
-        <li>
-          Bližší informace jsou dostupné na webových stránkách České obchodní inspekce:
-          <a href="https://coi.gov.cz/informace-o-adr/" target="_blank" rel="noopener"
-            >https://coi.gov.cz/informace-o-adr/</a
-          >
-        </li>
-      </ol>
-
-      <h2>12. Závěrečná ustanovení</h2>
-      <ol>
-        <li>Tyto obchodní podmínky se řídí právním řádem České republiky.</li>
-        <li>
-          Žádné ustanovení těchto podmínek neomezuje práva zákazníků, která jim náleží podle závazných
-          ustanovení právních předpisů.
-        </li>
-        <li>
-          Provozovatel může obchodní podmínky aktualizovat. Nové znění bude zveřejněno na webových
-          stránkách salonu. Změny se uplatní na budoucí smluvní vztahy; již uzavřené smlouvy se řídí
-          příslušnými sjednanými podmínkami a platnými právními předpisy.
-        </li>
-        <li>
-          Aktuální znění obchodních podmínek je dostupné na webových stránkách https://ivglowstudio.cz.
-        </li>
-        <li>Tyto obchodní podmínky nabývají účinnosti dne 1. 9. 2026.</li>
-      </ol>
-    </div>
-  </main>
-  <Footer />
-</Base>
-
-<style>
-  .legal {
-    padding-block: calc(var(--header-h) + 56px) var(--section-y);
-  }
-
-  .legal__inner {
-    max-width: 820px;
-  }
-
-  .legal__back {
-    display: inline-block;
-    margin-bottom: 32px;
-    font-size: 0.9rem;
-    color: var(--gold-700);
-    text-decoration: none;
-  }
-
-  .legal__back:hover {
-    color: var(--gold-500);
-  }
-
-  .legal__title {
-    font-size: clamp(2.2rem, 5vw, 3.2rem);
-  }
-
-  .legal__meta {
-    margin: 12px 0 0;
-    color: var(--text-muted);
-  }
-
-  .legal__divider {
-    margin: 24px 0 8px;
-  }
-
-  h2 {
-    font-size: 1.6rem;
-    margin: 48px 0 16px;
-  }
-
-  ol {
-    margin: 0;
-    padding-left: 1.5em;
-  }
-
-  ol > li {
-    padding-left: 0.4em;
-    margin-bottom: 10px;
-  }
-
-  ol > li::marker {
-    color: var(--gold-700);
-  }
-
-  ul {
-    margin: 8px 0 0;
-    padding-left: 1.2em;
-  }
-
-  .legal__ids {
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    gap: 6px 24px;
-    margin: 0 0 16px;
-    padding: 20px 24px;
-    background: var(--bg-alt);
-  }
-
-  .legal__ids dt {
-    color: var(--text-muted);
-  }
-
-  .legal__ids dd {
-    margin: 0;
-    color: var(--text);
-  }
-
-  a {
-    color: var(--gold-700);
-    overflow-wrap: anywhere;
-  }
-
-  @media (max-width: 520px) {
-    .legal__ids {
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
-
-    .legal__ids dd {
-      margin-bottom: 8px;
-    }
-  }
-</style>
+    <h2>12. Závěrečná ustanovení</h2>
+    <ol>
+      <li>Tyto obchodní podmínky se řídí právním řádem České republiky.</li>
+      <li>
+        Žádné ustanovení těchto podmínek neomezuje práva zákazníků, která jim náleží podle závazných
+        ustanovení právních předpisů.
+      </li>
+      <li>
+        Provozovatel může obchodní podmínky aktualizovat. Nové znění bude zveřejněno na webových
+        stránkách salonu. Změny se uplatní na budoucí smluvní vztahy; již uzavřené smlouvy se řídí
+        příslušnými sjednanými podmínkami a platnými právními předpisy.
+      </li>
+      <li>
+        Aktuální znění obchodních podmínek je dostupné na webových stránkách https://ivglowstudio.cz.
+      </li>
+      <li>Tyto obchodní podmínky nabývají účinnosti dne 1. 9. 2026.</li>
+    </ol>
+</LegalPage>
