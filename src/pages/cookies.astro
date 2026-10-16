@@ -1,0 +1,87 @@
+---
+/**
+ * Zásady používání cookies.
+ * Stav ověřen auditem živého webu (16. 10. 2026): žádné cookies, žádné localStorage/sessionStorage,
+ * žádné požadavky na cizí servery. Pokud na web přibude analytika, vložená mapa, Instagram feed
+ * nebo jiný obsah třetích stran, je potřeba tuto stránku upravit a doplnit lištu se souhlasem.
+ */
+import LegalPage from '../layouts/LegalPage.astro';
+import { home } from '../data/site';
+---
+
+<LegalPage
+  title="Cookies – IV Glow studio"
+  description="Web kosmetického salonu IV Glow studio nepoužívá cookies ani nástroje pro měření návštěvnosti či reklamu."
+  heading="Zásady používání cookies"
+  meta="Datum účinnosti: 16. 10. 2026"
+>
+  <p class="legal__note">
+    <strong>Stručně:</strong> tento web nepoužívá žádné cookies ani podobné technologie, a proto
+    po vás nežádá souhlas a nezobrazuje lištu s cookies.
+  </p>
+
+  <h2>1. Co jsou cookies</h2>
+  <p>
+    Cookies jsou malé textové soubory, které si webové stránky ukládají do vašeho prohlížeče. Slouží
+    například k zapamatování přihlášení, nastavení stránky, k měření návštěvnosti nebo k
+    zobrazování cílené reklamy. Podobně fungují i další technologie, jako je místní úložiště
+    prohlížeče (local storage).
+  </p>
+
+  <h2>2. Jaké cookies tento web používá</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Druh cookies</th>
+        <th>K čemu slouží</th>
+        <th>Používá je tento web?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-label="Druh cookies">Nezbytné (technické)</td>
+        <td data-label="K čemu slouží">Zajišťují základní fungování webu</td>
+        <td data-label="Používá je tento web?">Ne – web funguje i bez nich</td>
+      </tr>
+      <tr>
+        <td data-label="Druh cookies">Analytické</td>
+        <td data-label="K čemu slouží">Měření návštěvnosti a chování návštěvníků</td>
+        <td data-label="Používá je tento web?">Ne</td>
+      </tr>
+      <tr>
+        <td data-label="Druh cookies">Marketingové</td>
+        <td data-label="K čemu slouží">Cílená reklama a sledování napříč weby</td>
+        <td data-label="Používá je tento web?">Ne</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    Web zároveň nepoužívá místní úložiště prohlížeče a nenačítá obsah ze serverů třetích stran –
+    písma i fotografie jsou uložené přímo na webu. Při prohlížení stránek tak vaše údaje nezískává
+    žádná jiná společnost.
+  </p>
+
+  <h2>3. Odkazy na jiné weby</h2>
+  <p>
+    Na webu najdete odkazy na Instagram, Mapy.com a stránky úřadů. Teprve když na takový odkaz
+    kliknete, přejdete na web jiného provozovatele. Ten může používat vlastní cookies podle svých
+    zásad, na které nemám vliv.
+  </p>
+
+  <h2>4. Jak cookies spravovat v prohlížeči</h2>
+  <p>
+    Ukládání cookies můžete kdykoli omezit, zakázat nebo cookies smazat v nastavení svého prohlížeče
+    (obvykle v sekci Soukromí nebo Zabezpečení). Na fungování tohoto webu to nebude mít žádný vliv.
+  </p>
+
+  <h2>5. Změny</h2>
+  <p>
+    Pokud bych v budoucnu začala používat například měření návštěvnosti nebo vložený obsah z jiných
+    služeb, tuto stránku aktualizuji a před uložením cookies, které nejsou nezbytné, si vyžádám váš
+    souhlas.
+  </p>
+  <p>
+    Informace o tom, jak zpracovávám osobní údaje, najdete v
+    <a href={`${home}ochrana-osobnich-udaju/`}>zásadách ochrany osobních údajů</a>.
+  </p>
+</LegalPage>
