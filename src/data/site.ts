@@ -1,3 +1,6 @@
+import diplomGigi from '../assets/certs/diplom-gigi-expert.jpg';
+import certifikat10v1 from '../assets/certs/certifikat-10v1.jpg';
+
 /** Kořen webu včetně base (GitHub Pages běží v podsložce) – pro odkazy z podstránek na sekce hlavní stránky */
 export const home = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
@@ -58,8 +61,23 @@ export const nav = [
   { label: 'Kontakt', href: '#kontakt' },
 ];
 
-/** Vzdělání a certifikáty – sekce O mně (podle diplomů od klientky) */
+/**
+ * Vzdělání a certifikáty – sekce O mně (podle diplomů od klientky).
+ * Obrázky jsou vykreslené z PDF diplomů (src/assets/certs/).
+ */
 export const certificates = [
-  { title: 'GIGI Expert', detail: 'seminář GIGI Laboratories', date: 'březen 2026' },
-  { title: 'Profesionální čištění pleti metodou 10v1', detail: 'certifikovaný kurz, Praha', date: 'červenec 2026' },
+  {
+    title: 'GIGI Expert',
+    detail: 'seminář GIGI Laboratories',
+    date: 'březen 2026',
+    image: diplomGigi,
+    alt: 'Diplom GIGI Expert – Ivana Vacíková, GIGI Laboratories, 23. 3. 2026',
+  },
+  {
+    title: 'Profesionální čištění pleti metodou 10v1',
+    detail: 'certifikovaný kurz, Praha',
+    date: 'červenec 2026',
+    image: certifikat10v1,
+    alt: 'Certifikát profesionální čištění pleti metodou 10v1 – Ivana Vacíková, Praha, 15. 7. 2026',
+  },
 ];
