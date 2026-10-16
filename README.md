@@ -35,3 +35,23 @@ Logo `src/assets/logo.png` je vyříznuté z `logo-src.png` skriptem `scripts/ma
 
 - **Rezervační služba (Reservio, Bookio, Noona…)** – stačí změnit `booking.href` v `src/data/site.ts` na odkaz služby, případně vložit jejich widget do `src/components/BookingButton.astro` nebo do sekce Kontakt. Zálohy/platby řeší služba.
 - **Vlastní systém** – do Astra lze přidat React komponentu (`npx astro add react`) jako „island“ a napojit ji na samostatné API a platební bránu (GoPay, Comgate, Stripe). Zbytek webu zůstává beze změny.
+
+## Lišta se souhlasem s cookies
+
+Web zatím nepoužívá žádné cookies, proto je lišta připravená, ale **vypnutá**
+(`enabled: false` v `src/data/consent.ts`). Zapnout ji, až na web přibude služba,
+která ukládá nepovinné cookies (Google Analytics, vložená mapa Google, Instagram feed…):
+
+1. V `src/data/consent.ts` nastavit `enabled: true`.
+2. Skript služby vložit tak, aby se spustil až po souhlasu – místo `<script src="…">` použít:
+   ```html
+   <script type="text/plain" data-consent="analytics" data-src="https://…"></script>
+   ```
+   (kategorie `analytics` nebo `marketing`; funguje i pro skripty s obsahem místo `data-src`).
+3. Upravit stránku `src/pages/cookies.astro` – doplnit, jaké cookies a služby web používá.
+4. Při každé změně používaných služeb zvýšit `version` – návštěvníků se lišta zeptá znovu.
+
+Lišta: „Odmítnout vše“ je stejně výrazné jako „Přijmout vše“, nic není předem zaškrtnuté,
+volbu jde změnit odkazem „Nastavení cookies“ v patičce (zobrazí se jen při zapnuté liště).
+Ostatní skripty se mohou ptát přes `window.ivglowConsent.has('analytics')`
+nebo poslouchat událost `ivglow:consent`.

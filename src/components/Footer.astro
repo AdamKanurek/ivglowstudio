@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
 import { site, legal, home } from '../data/site';
+import { consentConfig } from '../data/consent';
 
 const year = new Date().getFullYear();
 ---
@@ -28,6 +29,16 @@ const year = new Date().getFullYear();
       <a href={`${home}ochrana-osobnich-udaju/`}>Ochrana osobních údajů</a>
       <span aria-hidden="true">·</span>
       <a href={`${home}cookies/`}>Cookies</a>
+      {
+        consentConfig.enabled && (
+          <>
+            <span aria-hidden="true">·</span>
+            <a href={`${home}cookies/`} data-consent-open>
+              Nastavení cookies
+            </a>
+          </>
+        )
+      }
     </p>
     <p class="footer__copy">© {year} {site.name}</p>
   </div>

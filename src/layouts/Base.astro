@@ -3,6 +3,8 @@ import '../styles/global.css';
 import { site } from '../data/site';
 import { treatments, extras, priceRange } from '../data/services';
 import { getImage } from 'astro:assets';
+import CookieConsent from '../components/CookieConsent.astro';
+import { consentConfig } from '../data/consent';
 import ogSource from '../assets/img/IVglow67.jpg';
 
 interface Props {
@@ -77,6 +79,7 @@ const jsonLd = {
   </head>
   <body>
     <slot />
+    {consentConfig.enabled && <CookieConsent />}
 
     <script>
       // Jemné objevování sekcí při scrollu

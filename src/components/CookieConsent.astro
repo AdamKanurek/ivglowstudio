@@ -1,0 +1,292 @@
+---
+/**
+ * Lišta se souhlasem s cookies (vykreslí se jen při consentConfig.enabled).
+ * - „Odmítnout vše“ je stejně výrazné jako „Přijmout vše“, nic není předem zaškrtnuté.
+ * - Volba se ukládá do localStorage (nezbytné úložiště, k němu se souhlas nevyžaduje).
+ * - Skripty s type="text/plain" data-consent="<kategorie>" spustí až po souhlasu.
+ * - API pro ostatní skripty: window.ivglowConsent.has('analytics'), .open(); událost 'ivglow:consent'.
+ */
+import { consentConfig } from '../data/consent';
+import { home } from '../data/site';
+
+const { categories, version, maxAgeDays } = consentConfig;
+---
+
+<div
+  class="consent"
+  data-consent-root
+  data-version={version}
+  data-max-age={maxAgeDays}
+  hidden
+>
+  <section class="consent__box" role="dialog" aria-modal="false" aria-labelledby="consent-title">
+    <h2 id="consent-title" class="consent__title">Cookies</h2>
+    <p class="consent__text">
+      Web používá nezbytné technologie pro své fungování. S vaším souhlasem bych ráda používala i
+      další cookies – jejich přehled najdete v nastavení. Volbu můžete kdykoli změnit v patičce webu.
+      <a href={`${home}cookies/`}>Více o cookies</a>
+    </p>
+
+    <div class="consent__settings" data-consent-settings hidden>
+      <label class="consent__cat">
+        <input type="checkbox" checked disabled />
+        <span>
+          <strong>Nezbytné</strong>
+          <span class="consent__desc">Zajišťují základní fungování webu a uložení vaší volby. Nelze je vypnout.</span>
+        </span>
+      </label>
+      {
+        categories.map((c) => (
+          <label class="consent__cat">
+            <input type="checkbox" data-consent-cat={c.id} />
+            <span>
+              <strong>{c.label}</strong>
+              <span class="consent__desc">{c.description}</span>
+            </span>
+          </label>
+        ))
+      }
+    </div>
+
+    <div class="consent__actions">
+      <button type="button" class="btn btn--ghost consent__btn" data-consent-action="reject">
+        Odmítnout vše
+      </button>
+      <button type="button" class="btn btn--ghost consent__btn" data-consent-action="accept">
+        Přijmout vše
+      </button>
+      <button type="button" class="consent__link" data-consent-action="settings">
+        Nastavení
+      </button>
+      <button type="button" class="btn btn--primary consent__btn" data-consent-action="save" hidden>
+        Uložit výběr
+      </button>
+    </div>
+  </section>
+</div>
+
+<style>
+  .consent {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .consent[hidden] {
+    display: none;
+  }
+
+  .consent__box {
+    pointer-events: auto;
+    width: 100%;
+    max-width: 640px;
+    max-height: calc(100svh - 32px);
+    overflow-y: auto;
+    padding: 28px 32px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: 0 24px 60px -24px rgba(58, 48, 41, 0.45);
+  }
+
+  .consent__title {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+  }
+
+  .consent__text {
+    margin: 0 0 20px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+
+  .consent__text a {
+    color: var(--gold-700);
+  }
+
+  .consent__settings {
+    margin: 0 0 20px;
+    border-top: 1px solid var(--line);
+  }
+
+  .consent__cat {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    cursor: pointer;
+  }
+
+  .consent__cat input {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-top: 3px;
+    accent-color: var(--gold-700);
+  }
+
+  .consent__cat strong {
+    display: block;
+    font-weight: 500;
+    color: var(--gold-900);
+  }
+
+  .consent__desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+  }
+
+  .consent__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* obě hlavní volby stejně výrazné */
+  .consent__btn {
+    flex: 1 1 160px;
+    min-height: 44px;
+    padding: 0.6em 1.2em;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+  }
+
+  .consent__link {
+    min-height: 44px;
+    padding: 0 8px;
+    border: 0;
+    background: none;
+    color: var(--gold-700);
+    font: 400 0.9rem var(--font-sans);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+  }
+
+  .consent__btn[hidden],
+  .consent__link[hidden] {
+    display: none;
+  }
+
+  @media (max-width: 520px) {
+    .consent {
+      left: 8px;
+      right: 8px;
+      bottom: 8px;
+    }
+
+    .consent__box {
+      padding: 22px 20px;
+    }
+
+    .consent__link {
+      width: 100%;
+    }
+
+    .consent__btn {
+      flex-basis: 120px;
+      padding: 0.6em 0.8em;
+      letter-spacing: 0.08em;
+    }
+  }
+</style>
+
+<script>
+  type Choice = { v: number; at: number; analytics: boolean; marketing: boolean };
+  const KEY = 'ivglow-consent';
+
+  const root = document.querySelector<HTMLElement>('[data-consent-root]');
+  if (root) {
+    const version = Number(root.dataset.version);
+    const maxAge = Number(root.dataset.maxAge) * 24 * 60 * 60 * 1000;
+    const settings = root.querySelector<HTMLElement>('[data-consent-settings]')!;
+    const boxes = [...root.querySelectorAll<HTMLInputElement>('[data-consent-cat]')];
+    const btn = (a: string) => root.querySelector<HTMLButtonElement>(`[data-consent-action="${a}"]`)!;
+
+    const read = (): Choice | null => {
+      try {
+        const c = JSON.parse(localStorage.getItem(KEY) || 'null') as Choice | null;
+        if (!c || c.v !== version || Date.now() - c.at > maxAge) return null;
+        return c;
+      } catch {
+        return null;
+      }
+    };
+
+    let choice = read();
+
+    // spustí skripty čekající na souhlas: <script type="text/plain" data-consent="analytics" …>
+    const activate = () => {
+      document.querySelectorAll<HTMLScriptElement>('script[type="text/plain"][data-consent]').forEach((old) => {
+        const cat = old.dataset.consent as 'analytics' | 'marketing';
+        if (!choice?.[cat]) return;
+        const s = document.createElement('script');
+        for (const { name, value } of [...old.attributes]) {
+          if (name === 'type' || name === 'data-consent') continue;
+          s.setAttribute(name === 'data-src' ? 'src' : name, value);
+        }
+        s.text = old.text;
+        old.replaceWith(s);
+      });
+    };
+
+    const save = (c: Omit<Choice, 'v' | 'at'>) => {
+      choice = { v: version, at: Date.now(), ...c };
+      try {
+        localStorage.setItem(KEY, JSON.stringify(choice));
+      } catch {
+        /* úložiště nedostupné – volba platí jen do zavření stránky */
+      }
+      close();
+      activate();
+      document.dispatchEvent(new CustomEvent('ivglow:consent', { detail: choice }));
+    };
+
+    const showSettings = (on: boolean) => {
+      settings.hidden = !on;
+      btn('save').hidden = !on;
+      btn('settings').hidden = on;
+    };
+
+    const open = () => {
+      boxes.forEach((b) => (b.checked = !!choice?.[b.dataset.consentCat as 'analytics' | 'marketing']));
+      showSettings(false);
+      root.hidden = false;
+    };
+
+    const close = () => {
+      root.hidden = true;
+    };
+
+    btn('accept').addEventListener('click', () => save({ analytics: true, marketing: true }));
+    btn('reject').addEventListener('click', () => save({ analytics: false, marketing: false }));
+    btn('settings').addEventListener('click', () => showSettings(true));
+    btn('save').addEventListener('click', () => {
+      const get = (id: string) => boxes.find((b) => b.dataset.consentCat === id)?.checked ?? false;
+      save({ analytics: get('analytics'), marketing: get('marketing') });
+    });
+
+    // odkaz „Nastavení cookies“ v patičce
+    document.querySelectorAll('[data-consent-open]').forEach((el) =>
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        open();
+      })
+    );
+
+    (window as any).ivglowConsent = {
+      has: (cat: 'analytics' | 'marketing') => !!choice?.[cat],
+      get: () => choice,
+      open,
+    };
+
+    if (choice) activate();
+    else open();
+  }
+</script>
