@@ -1,14 +1,14 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
-import { site, nav } from '../data/site';
+import { site, nav, home, section } from '../data/site';
 import InstagramIcon from './InstagramIcon.astro';
 import BookingButton from './BookingButton.astro';
 ---
 
 <header class="header" data-header>
   <div class="container header__inner">
-    <a href="#top" class="header__logo" aria-label={`${site.name} – úvod`}>
+    <a href={home} class="header__logo" aria-label={`${site.name} – úvod`}>
       <Image src={logo} alt={site.name} width={180} densities={[1, 2]} loading="eager" />
     </a>
 
@@ -34,7 +34,7 @@ import BookingButton from './BookingButton.astro';
           {
             nav.map((item) => (
               <li>
-                <a href={item.href} data-menu-link>
+                <a href={section(item.href)} data-menu-link>
                   {item.label}
                 </a>
               </li>

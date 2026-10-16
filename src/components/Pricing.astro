@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import side from '../assets/img/IVglow37.jpg';
-import { treatments, extras, formatPrice } from '../data/services';
+import { treatments, extras, formatPrice, formatPackage } from '../data/services';
 import BookingButton from './BookingButton.astro';
 ---
 
@@ -34,6 +34,12 @@ import BookingButton from './BookingButton.astro';
                   <span class="price-item__price">{formatPrice(s)}</span>
                 </div>
                 {s.description && <p class="price-item__desc">{s.description}</p>}
+                {s.package && (
+                  <div class="price-item__package">
+                    <span>{s.package.label}</span>
+                    <span class="price-item__package-price">{formatPackage(s)}</span>
+                  </div>
+                )}
               </li>
             ))
           }
@@ -145,6 +151,24 @@ import BookingButton from './BookingButton.astro';
     font-size: 0.95rem;
     color: var(--text-muted);
     max-width: 34rem;
+  }
+
+  .price-item__package {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: var(--bg-alt);
+    font-size: 0.95rem;
+    color: var(--gold-900);
+  }
+
+  .price-item__package-price {
+    flex-shrink: 0;
+    color: var(--gold-700);
+    white-space: nowrap;
   }
 
   .pricing__note {

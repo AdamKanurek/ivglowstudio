@@ -5,7 +5,7 @@ import img12 from '../assets/img/IVglow12.jpg';
 import img44 from '../assets/img/IVglow44.jpg';
 import img57 from '../assets/img/IVglow57.jpg';
 import img2 from '../assets/img/IVglow2.jpg';
-import { reviews } from '../data/reviews';
+import { reviews, reviewsNote } from '../data/reviews';
 
 const photos = await Promise.all(
   [
@@ -55,14 +55,12 @@ const photos = await Promise.all(
               <li class="review reveal">
                 <blockquote>
                   <p>„{r.text}“</p>
-                  <footer>
-                    — {r.author}
-                    {r.source && <span class="review__source">{r.source}</span>}
-                  </footer>
+                  <footer>— {r.author ?? 'spokojená klientka'}</footer>
                 </blockquote>
               </li>
             ))}
           </ul>
+          <p class="reviews__note reveal">{reviewsNote}</p>
         </div>
       )
     }
@@ -138,13 +136,22 @@ const photos = await Promise.all(
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
+  }
+
+  @media (max-width: 760px) {
+    .reviews__list {
+      grid-template-columns: 1fr;
+    }
   }
 
   .review blockquote {
     margin: 0;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 32px;
     background: var(--surface);
     border: 1px solid var(--line);
@@ -163,8 +170,10 @@ const photos = await Promise.all(
     color: var(--gold-700);
   }
 
-  .review__source {
-    margin-left: 8px;
+  .reviews__note {
+    margin: 24px 0 0;
+    text-align: center;
+    font-size: 0.85rem;
     color: var(--text-muted);
   }
 

@@ -1,3 +1,9 @@
+/** Kořen webu včetně base (GitHub Pages běží v podsložce) – pro odkazy z podstránek na sekce hlavní stránky */
+export const home = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+/** Odkaz na sekci hlavní stránky, např. section('#cenik') */
+export const section = (hash: string) => `${home}${hash}`;
+
 export const site = {
   name: 'IV Glow studio',
   title: 'IV Glow studio – kosmetický salon Písek',
@@ -50,4 +56,10 @@ export const nav = [
   { label: 'Ceník služeb', href: '#cenik' },
   { label: 'Fotogalerie', href: '#galerie' },
   { label: 'Kontakt', href: '#kontakt' },
+];
+
+/** Vzdělání a certifikáty – sekce O mně (podle diplomů od klientky) */
+export const certificates = [
+  { title: 'GIGI Expert', detail: 'seminář GIGI Laboratories', date: 'březen 2026' },
+  { title: 'Profesionální čištění pleti metodou 10v1', detail: 'certifikovaný kurz, Praha', date: 'červenec 2026' },
 ];

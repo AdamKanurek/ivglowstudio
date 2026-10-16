@@ -1,9 +1,16 @@
 ---
 import '../styles/global.css';
 import { site } from '../data/site';
-import { treatments, extras } from '../data/services';
+import { treatments, extras, priceRange } from '../data/services';
 import { getImage } from 'astro:assets';
 import ogSource from '../assets/img/IVglow67.jpg';
+
+interface Props {
+  /** titulek podstránky – bez něj se použije výchozí titulek webu */
+  title?: string;
+  description?: string;
+}
+const { title = site.title, description = site.description } = Astro.props;
 
 const og = await getImage({ src: ogSource, width: 1200, height: 630, fit: 'cover', format: 'jpg' });
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -29,7 +36,7 @@ const jsonLd = {
     postalCode: site.address.zip,
     addressCountry: site.address.country,
   },
-  priceRange: '100 – 1700 Kč',
+  priceRange,
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Ceník služeb',
@@ -48,8 +55,8 @@ const jsonLd = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{site.title}</title>
-    <meta name="description" content={site.description} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" href={`${baseUrl}favicon.png`} />
     <link rel="sitemap" href={`${baseUrl}sitemap-index.xml`} />
@@ -58,8 +65,8 @@ const jsonLd = {
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="cs_CZ" />
-    <meta property="og:title" content={site.title} />
-    <meta property="og:description" content={site.description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={new URL(og.src, Astro.site)} />
     <meta property="og:image:width" content="1200" />

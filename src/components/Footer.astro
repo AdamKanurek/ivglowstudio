@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
-import { site, legal } from '../data/site';
+import { site, legal, home } from '../data/site';
 
 const year = new Date().getFullYear();
 ---
@@ -21,6 +21,9 @@ const year = new Date().getFullYear();
     <p class="footer__legal">
       Mimosoudní řešení spotřebitelských sporů: Česká obchodní inspekce,
       <a href="https://adr.coi.cz" target="_blank" rel="noopener">adr.coi.cz</a>
+    </p>
+    <p class="footer__links">
+      <a href={`${home}obchodni-podminky/`}>Obchodní podmínky</a>
     </p>
     <p class="footer__copy">© {year} {site.name}</p>
   </div>
@@ -65,6 +68,13 @@ const year = new Date().getFullYear();
     max-width: 44rem;
     font-size: 0.8rem;
     line-height: 1.6;
+  }
+
+  .footer__links a {
+    font-size: 0.85rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--gold-300);
   }
 
   .footer__copy {

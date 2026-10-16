@@ -13,7 +13,7 @@ export default defineConfig({
   output: 'static',
   integrations: [sitemap()],
   build: {
-    // generuje /index.html místo /index/ – nejbezpečnější pro klasický webhosting
-    format: 'file',
+    // každá stránka jako složka s index.html (/obchodni-podminky/) – funguje na každém hostingu
+    format: 'directory',
   },
 });

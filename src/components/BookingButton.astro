@@ -1,10 +1,10 @@
 ---
 /**
  * Jediné místo pro CTA „Objednat se“.
- * Dnes vede na telefon; po zavedení rezervačního systému stačí změnit `booking.href`
+ * Dnes vede na sekci Kontakt; po zavedení rezervačního systému stačí změnit `booking.href`
  * v src/data/site.ts (případně sem vložit widget/modal).
  */
-import { booking } from '../data/site';
+import { booking, section } from '../data/site';
 
 interface Props {
   variant?: 'primary' | 'ghost';
@@ -13,10 +13,12 @@ interface Props {
 
 const { variant = 'primary', class: className } = Astro.props;
 const external = booking.href.startsWith('http');
+// odkaz na sekci (#kontakt) musí fungovat i z podstránek
+const href = booking.href.startsWith('#') ? section(booking.href) : booking.href;
 ---
 
 <a
-  href={booking.href}
+  href={href}
   class:list={['btn', `btn--${variant}`, className]}
   {...external ? { target: '_blank', rel: 'noopener' } : {}}
 >
